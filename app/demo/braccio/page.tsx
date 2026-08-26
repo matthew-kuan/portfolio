@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
  * The MediaPipe pipeline is a local Python service (it needs a webcam and a
  * serial connection to the Braccio arm), so there is nothing to host. This page
  * probes for that service on localhost and either embeds it or explains how to
- * run it — so the link is useful both when demoing live and when a visitor
+ * run it, so the link is useful both when demoing live and when a visitor
  * just wants to understand the project.
  */
 
@@ -47,11 +47,11 @@ export default function BraccioDemoPage() {
         </a>
 
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-neutral-50 mt-6 mb-2 tracking-tight">
-          Hand-Tracking Robotic Arm — Live Demo
+          Hand-Tracking Robotic Arm: Live Demo
         </h1>
         <p className="text-slate-600 dark:text-neutral-300 mb-8 leading-relaxed">
           A Python + MediaPipe pipeline reads your webcam, extracts hand landmarks,
-          and maps them to six joint angles on an Arduino-driven Braccio arm — right
+          and maps them to six joint angles on an Arduino-driven Braccio arm, right
           hand steers the arm, left hand opens and closes the gripper.
         </p>
 
@@ -114,7 +114,7 @@ export default function BraccioDemoPage() {
             </h2>
             <p className="text-slate-600 dark:text-neutral-300 text-sm mb-5 leading-relaxed">
               This demo drives real hardware, so it runs on your machine rather than a
-              server. It needs a webcam; the Arduino and Braccio arm are optional — without
+              server. It needs a webcam; the Arduino and Braccio arm are optional, and without
               them the vision pipeline still runs and prints the joint angles it would send.
             </p>
             <ol className="space-y-3 text-sm">

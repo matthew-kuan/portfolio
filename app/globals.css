@@ -14,7 +14,7 @@
 
 .dark {
   /* Dark-gray surface with a warm orange accent.
-     orange-400 on #171717 measures 7.92:1 — comfortably WCAG AA.
+     orange-400 on #171717 measures 7.92:1, comfortably WCAG AA.
      Note white-on-orange is only 2.26:1, so filled orange controls use
      near-black text (7.92:1) rather than white. */
   --accent: #fb923c;

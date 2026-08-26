@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const SITE = "https://matthew-kuan-portfolio.vercel.app";
-const TITLE = "Matthew Kuan — Biomedical Engineer & Software Developer";
+const TITLE = "Matthew Kuan | Software Engineer & Applied Mathematician";
 const DESCRIPTION =
-  "Biomedical Engineering & Applied Mathematics student at Stony Brook University. I build at the intersection of biology, signal processing, and software — from microfluidic devices in a cleanroom to full-stack AI web apps.";
+  "Biomedical Engineering & Applied Mathematics student at Stony Brook University, minoring in Finance. I build software and quantitative models that turn messy data into decisions, from investment return engines to full-stack AI web apps.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     "Matthew Kuan",
     "Biomedical Engineering",
     "Software Engineer",
+    "Quantitative Finance",
+    "Applied Mathematics",
     "Stony Brook University",
     "Full-Stack Developer",
     "Microfluidics",
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Matthew Kuan — Biomedical Engineer & Software Developer",
+        alt: "Matthew Kuan | Software Engineer & Applied Mathematician",
       },
     ],
   },
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 // Applies the saved theme before first paint so the page never flashes the
-// wrong colors. Light is the deliberate default for first-time visitors — we
+// wrong colors. Light is the deliberate default for first-time visitors, so we
 // only go dark if the visitor has explicitly chosen it before.
 const NO_FLASH = `
 (function(){try{

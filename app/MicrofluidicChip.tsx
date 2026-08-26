@@ -10,7 +10,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
  * Geometry is procedural (no asset download) and mirrors the real device:
  * a polycarbonate substrate imprinted with a distribution channel feeding an
  * array of nanoliter chambers, capped by a porous membrane that vents
- * displaced air — the change that makes a non-gas-permeable thermoplastic
+ * displaced air, the change that makes a non-gas-permeable thermoplastic
  * fill completely where PDMS relies on the bulk material breathing.
  *
  * Click a labelled part to read about it. Uses OrbitControls that ship inside
@@ -27,7 +27,7 @@ const PARTS: Record<PartId, { title: string; body: string; spec: string }> = {
   },
   channels: {
     title: "Distribution Manifold",
-    body: "A branching manifold along the inlet side splits the sample into parallel rows that sweep across the array toward the outlet. Channel depth and branch taper set how evenly the rows fill — the parameter I spent the most time tuning during imprinting.",
+    body: "A branching manifold along the inlet side splits the sample into parallel rows that sweep across the array toward the outlet. Channel depth and branch taper set how evenly the rows fill, and it is the parameter I spent the most time tuning during imprinting.",
     spec: "0.7 mm row pitch · SU-8 photolithography → PDMS die → hot-embossed polycarbonate",
   },
   chambers: {
@@ -37,7 +37,7 @@ const PARTS: Record<PartId, { title: string; body: string; spec: string }> = {
   },
   membrane: {
     title: "Porous Venting Membrane",
-    body: "The core problem with thermoplastics: unlike PDMS, polycarbonate doesn't breathe, so trapped air blocks chambers from filling. A porous membrane bonded across the disc gives that air an escape path — it's what makes a low-cost thermoplastic device viable.",
+    body: "The core problem with thermoplastics: unlike PDMS, polycarbonate doesn't breathe, so trapped air blocks chambers from filling. A porous membrane bonded across the disc gives that air an escape path, which is what makes a low-cost thermoplastic device viable.",
     spec: "Thermal & UV-curable adhesive bonding (NOA72, NEA121RED)",
   },
   outlet: {
@@ -272,7 +272,7 @@ export default function MicrofluidicChip({ dark = false }: { dark?: boolean }) {
       downAt = { x: e.clientX, y: e.clientY };
     };
     const onUp = (e: PointerEvent) => {
-      // Ignore drags — only treat a near-stationary press as a pick.
+      // Ignore drags, only treat a near-stationary press as a pick.
       if (Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 5) return;
       toNDC(e);
       ray.setFromCamera(ptr, camera);

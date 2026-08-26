@@ -6,7 +6,7 @@ import * as THREE from "three";
 /**
  * Ambient particle-lattice backdrop.
  *
- * Renders a slowly drifting point cloud with proximity-linked edges — a nod to
+ * Renders a slowly drifting point cloud with proximity-linked edges, a nod to
  * the microfluidic channel networks and data graphs in the work below. Sits
  * behind all content at low opacity and never intercepts pointer events.
  *

@@ -10,14 +10,14 @@ import { LazyMotion, m, AnimatePresence } from "framer-motion";
 const loadMotionFeatures = () =>
   import("framer-motion").then((mod) => mod.domAnimation);
 
-// three.js is ~150 kB and purely decorative — keep it out of the initial bundle
+// three.js is ~150 kB and purely decorative, so keep it out of the initial bundle
 // and off the server render so it never blocks first paint.
 const ThreeBackground = dynamic(() => import("./ThreeBackground"), {
   ssr: false,
   loading: () => null,
 });
 
-// Also client-only and three.js-backed — loads on demand, not at first paint.
+// Also client-only and three.js-backed, loads on demand, not at first paint.
 const MicrofluidicChip = dynamic(() => import("./MicrofluidicChip"), {
   ssr: false,
   loading: () => (
@@ -40,12 +40,12 @@ const CURRENTLY = {
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
-  { label: "Research", href: "#research" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Coursework", href: "#coursework" },
-  { label: "Contact", href: "#contact" },
+  { label: "Research", href: "#research" },
+  { label: "Contact Information", href: "#contact" },
 ];
 
 const RESEARCH = [
@@ -117,7 +117,7 @@ const EXPERIENCE: {
     date: "Jul 2026 \u2013 Aug 2026",
     location: "New York, NY",
     bullets: [
-      "Organize and maintain the company\u2019s sales pipeline in HubSpot CRM \u2014 auditing six months of submitted proposals and assigning each opportunity to its correct deal stage, enabling accurate visibility into business performance.",
+      "Organize and maintain the company\u2019s sales pipeline in HubSpot CRM, auditing six months of submitted proposals and assigning each opportunity to its correct deal stage, enabling accurate visibility into business performance.",
       "Produce and publish 4\u20138 AI-generated marketing advertisements per week using Zeely AI, coordinating budget allocation with management prior to launch.",
       "Execute B2B social media marketing across TikTok, Instagram, and Facebook on a consistent publishing cadence promoting security services and recruitment.",
       "Run a customer review campaign targeting 20+ new Google Reviews, monitoring activity and pacing submissions to sustain organic growth.",
@@ -175,7 +175,7 @@ const EXPERIENCE: {
     ],
   },
   {
-    org: "Rendr \u2014 Internal Medicine",
+    org: "Rendr Internal Medicine",
     sub: "Private Practice",
     role: "Shadowing & Medical Intern",
     date: "Jul 2024 \u2013 Jan 2026",
@@ -206,7 +206,21 @@ const PROJECTS: {
   extra?: { label: string; href: string };
 }[] = [
   {
-    name: "Habits \u2014 Sleep Quality Tracker",
+    name: "Mutual Fund Investment Predictor",
+    impact: "Full-stack return model over live market data, covering 48 mutual funds and 20 bond funds.",
+    stack: "Java · Spring Boot · Angular · PostgreSQL · Python · Gemini API",
+    context: "Emerging Leaders Series Capstone, 2026",
+    bullets: [
+      "Built RESTful APIs that project investment returns from historical performance, U.S. Treasury rates, and fund-level risk factors, then surface expected value and risk profile through an Angular front end.",
+      "Integrated Yahoo Finance for 5-year historical returns, the FRED Treasury API for risk-free rates and term/credit factors, and Newton Analytics for beta, caching live values in Postgres to cut redundant API calls.",
+      "Seeded bond fund regression coefficients with a Python job, and added a Gemini tool-calling chatbot that fetches live expected returns and future value projections under explicit recommendation guardrails.",
+      "Covered the math with JUnit tests asserting that future-value computations return the correct number of periods and stay positive and finite across every fund category.",
+    ],
+    tags: ["Finance", "SWE", "AI/ML"],
+    pdf: "/projects/mutual-fund-calculator.pdf",
+  },
+  {
+    name: "Habits: Sleep Quality Tracker",
     impact: "A live, revenue-ready product: Stripe billing, Supabase backend, and a React Native app.",
     stack: "Next.js \u00b7 TypeScript \u00b7 Supabase \u00b7 Stripe \u00b7 Expo (React Native) \u00b7 CSS",
     context: "Personal Project",
@@ -254,7 +268,7 @@ const PROJECTS: {
     context: "L\u2019Or\u00e9al Brandstorm 2026",
     bullets: [
       "Developed an AI-powered personalized fragrance recommendation web app integrating the Google Gemini API to analyze user outfit images, local weather, and personal preferences, delivering scent recommendations and application guidance.",
-      "Designed a multi-step discovery journey \u2014 location, climate, personality, and sillage inputs \u2014 using Next.js and Tailwind CSS to deliver a premium, bespoke digital consultation experience.",
+      "Designed a multi-step discovery journey (location, climate, personality, and sillage inputs) using Next.js and Tailwind CSS to deliver a premium, bespoke digital consultation experience.",
       "Conceptualized a circular business model featuring refillable aluminum-shell fragrance vessels and a seasonal scent cadence using PCR glass (reducing CO\u2082 up to 30%), aligning with L\u2019Or\u00e9al\u2019s 2030 sustainability goals.",
       "Presented product strategy and tech architecture to panel judges, positioning Savoir-Faire as a \u201cbeauty tech\u201d brand combining AI-driven personalization with sustainability-first hardware design.",
     ],
@@ -272,7 +286,7 @@ const PROJECTS: {
       "Built a gamified, full-stack guitar practice platform with real-time pitch detection, MIDI file import, and 3D tab visualization using Three.js and React Three Fiber, enabling users to practice along with animated guitar notation.",
       "Implemented real-time audio processing using the Web Audio API and basic-pitch for pitch accuracy feedback; integrated Demucs for audio stem separation via a Dockerized Python backend, enabling dependency-free client-side usage.",
       "Developed user authentication (NextAuth), profile management, campaign modes, and a competitive leaderboard using MongoDB, fostering a social and structured practice ecosystem.",
-      "Containerized the audio import service with Docker \u2014 pre-warming the Demucs model at startup and caching checkpoints in a persistent volume \u2014 to eliminate manual dependency installation for contributors.",
+      "Containerized the audio import service with Docker, pre-warming the Demucs model at startup and caching checkpoints in a persistent volume, to eliminate manual dependency installation for contributors.",
     ],
     tags: ["SWE"],
     repo: "https://github.com/aycow/guitar_site",
@@ -315,7 +329,7 @@ const PROJECTS: {
     context: "Intermediate Writing (WRT 102), Spring 2025",
     bullets: [
       "Authored a research-based argumentative paper evaluating whether artificial intelligence can reduce net environmental harm, weighing the energy cost of AI runtime against its capacity to cut global consumption.",
-      "Analyzed AI\u2019s role in siting and scaling renewable energy \u2014 including offshore wind capacity assessment \u2014 and in operating energy plants more efficiently, drawing on peer-reviewed engineering and environmental sources.",
+      "Analyzed AI\u2019s role in siting and scaling renewable energy, including offshore wind capacity assessment, and in operating energy plants more efficiently, drawing on peer-reviewed engineering and environmental sources.",
       "Evaluated real siting constraints for renewable installations, including average wind speeds, geotechnical foundation conditions, coastal biodiversity impact, and project economics, then peer-reviewed essays across other disciplines to refine argumentation and structure.",
     ],
     tags: ["Energy", "Research", "AI/ML"],
@@ -460,7 +474,7 @@ const COURSES: {
       {
         code: "BME 120",
         title: "Programming Fundamentals in Biomedical Engineering",
-        desc: "Theory and fundamentals of computer programming for biomedical applications — computer architecture, the interaction between hardware, OS, and application software, and the programming control logic and style critical to all languages, taught primarily in MATLAB.",
+        desc: "Theory and fundamentals of computer programming for biomedical applications: computer architecture, the interaction between hardware, OS, and application software, and the programming control logic and style critical to all languages, taught primarily in MATLAB.",
       },
       {
         code: "BME 203",
@@ -470,17 +484,17 @@ const COURSES: {
       {
         code: "BME 212",
         title: "Biomedical Engineering Research Fundamentals",
-        desc: "Data collection and analysis in the context of biophysical measurements — statistical measures, hypothesis testing, linear regression, and ANOVA introduced application-first, alongside instrumentation, A/D boards, and LabVIEW data collection.",
+        desc: "Data collection and analysis in the context of biophysical measurements, covering statistical measures, hypothesis testing, linear regression, and ANOVA introduced application-first, alongside instrumentation, A/D boards, and LabVIEW data collection.",
       },
       {
         code: "BME 260",
         title: "Statics and Dynamics in Biological Systems",
-        desc: "Engineering statics and dynamics applied to biological systems using vector methods: free body diagrams, equilibrium, rectilinear and angular kinetics/kinematics, work, energy, and momentum — paired with the anatomy and physiology of the musculoskeletal, nervous, and cardiovascular systems.",
+        desc: "Engineering statics and dynamics applied to biological systems using vector methods: free body diagrams, equilibrium, rectilinear and angular kinetics/kinematics, work, energy, and momentum, paired with the anatomy and physiology of the musculoskeletal, nervous, and cardiovascular systems.",
       },
       {
         code: "BME 271",
         title: "Introduction to Electric Circuits and Bioelectricity",
-        desc: "Fundamental circuit analysis — lumped time-invariant models of resistors, capacitors, and inductors, Ohm's and Kirchhoff's Laws, nodal and mesh analysis, two-port equivalents, and steady-state AC — applied to biomedical instrumentation, cell electrophysiology, and biopotentials.",
+        desc: "Fundamental circuit analysis of lumped time-invariant models of resistors, capacitors, and inductors, Ohm's and Kirchhoff's Laws, nodal and mesh analysis, two-port equivalents, and steady-state AC, applied to biomedical instrumentation, cell electrophysiology, and biopotentials.",
       },
       {
         code: "BME 300",
@@ -490,7 +504,7 @@ const COURSES: {
       {
         code: "BME 304",
         title: "Genetic Engineering",
-        desc: "Molecular bioengineering with a focus on genetic engineering: DNA structure and function, genetic information flow, recombinant DNA methodology, cloning and transgenics, biotechnology and bioprocessing, and gene therapy — including the ethical, regulatory, and risk-benefit dimensions.",
+        desc: "Molecular bioengineering with a focus on genetic engineering: DNA structure and function, genetic information flow, recombinant DNA methodology, cloning and transgenics, biotechnology and bioprocessing, and gene therapy, including the ethical, regulatory, and risk-benefit dimensions.",
       },
       {
         code: "BME 361",
@@ -535,7 +549,7 @@ const COURSES: {
       {
         code: "BIO 202",
         title: "Fundamentals of Biology: Molecular and Cellular Biology",
-        desc: "The fundamentals of cell biology, biochemistry, and genetics — the biochemical and molecular bases of cell structure, energy metabolism, gene regulation, heredity, and development across organisms from bacteria to humans.",
+        desc: "The fundamentals of cell biology, biochemistry, and genetics: the biochemical and molecular bases of cell structure, energy metabolism, gene regulation, heredity, and development across organisms from bacteria to humans.",
       },
       {
         code: "CHE 321",
@@ -560,7 +574,7 @@ const COURSES: {
       {
         code: "ACC 210",
         title: "Financial Accounting",
-        desc: "Fundamental financial accounting principles concentrating on identifying, recording, and communicating the economic events of a business — the accounting cycle, income statement, retained earnings statement, and balance sheet, with in-depth treatment of assets and liabilities.",
+        desc: "Fundamental financial accounting principles concentrating on identifying, recording, and communicating the economic events of a business: the accounting cycle, income statement, retained earnings statement, and balance sheet, with in-depth treatment of assets and liabilities.",
       },
       {
         code: "BUS 230",
@@ -570,45 +584,9 @@ const COURSES: {
       {
         code: "WRT 102",
         title: "Intermediate Writing Workshop",
-        desc: "Strategies for extended academic writing — critical analysis, argument and point of view, and multi-source college-level research essays — developing rhetorical awareness, analytical proficiency, and academic research skills.",
+        desc: "Strategies for extended academic writing, covering critical analysis, argument and point of view, and multi-source college-level research essays, developing rhetorical awareness, analytical proficiency, and academic research skills.",
       },
     ],
-  },
-];
-
-// Engineering notes for this site. Every number here was measured, not
-// estimated — before/after values come from `next build` output and file sizes.
-const BUILD_NOTES: {
-  title: string;
-  metric?: string;
-  body: string;
-}[] = [
-  {
-    title: "Cut initial JS by 58%",
-    metric: "249 kB → 106 kB",
-    body: "three.js is ~150 kB and purely decorative, so it had no business blocking first paint. Loading it through next/dynamic with ssr:false code-splits it into a separate chunk that only fetches when the background actually mounts.",
-  },
-  {
-    title: "Shrank the PDF payload by 36%",
-    metric: "24.6 MB → 15.8 MB",
-    body: "Posters and decks carried full-resolution photos nobody views at full resolution. A PyMuPDF pass downsamples any image wider than 1400 px and re-encodes it as JPEG. Two bugs bit me: both the save call and update_stream re-deflated my JPEG data while the object still declared /DCTDecode, silently corrupting every image. Pages still rendered, so the fix was a validation gate that rasterizes each page and fails on any decoder warning.",
-  },
-  {
-    title: "Audited contrast instead of eyeballing it",
-    metric: "3 WCAG AA failures found",
-    body: "Computing real luminance ratios turned up muted text at 2.56:1 against white where AA needs 4.5:1, plus a translucent accent at 2.98:1. Both were fixed by shifting one step darker. The dark theme's orange was chosen the same way — it measures 7.92:1 on the gray surface.",
-  },
-  {
-    title: "Fixed accessibility the tooling missed",
-    body: "The skip link pointed at a #main landmark that didn't exist. A GitHub icon link had no accessible name. The scrolling tech strip is duplicated for a seamless loop, so screen readers read it twice — it's now aria-hidden, since the real list lives in Skills.",
-  },
-  {
-    title: "Made surfaces readable in dark mode",
-    body: "Switching to a dark-gray theme, cards ended up on neutral-900 — the exact same value as the page background, which would have made every card invisible. Caught it by diffing computed backgrounds rather than trusting the palette, then lifted all raised surfaces one step and re-verified the text still cleared AA.",
-  },
-  {
-    title: "Respects motion and theme preferences",
-    body: "prefers-reduced-motion disables the particle field, marquee, and reveal animations outright. Theme is applied by an inline script before first paint so there's no flash, and light is the deliberate default rather than following the OS.",
   },
 ];
 
@@ -642,7 +620,7 @@ const LEADERSHIP = [
 
 // Reveals `.reveal` elements as they scroll into view. Re-runs whenever `dep`
 // changes so content swapped in by a filter (which mounts fresh, still-hidden
-// nodes) gets observed too — otherwise those cards stay stuck at opacity 0.
+// nodes) gets observed too, otherwise those cards stay stuck at opacity 0.
 function useReveal(dep?: unknown) {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal:not(.visible)");
@@ -793,7 +771,7 @@ export default function Home() {
 
   const filteredProjects =
     activeFilter === "All" ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(activeFilter));
-  const filters: ProjectTag[] = ["All", "SWE", "AI/ML", "Biomedical", "Hardware", "Energy", "Research", "Finance"];
+  const filters: ProjectTag[] = ["All", "SWE", "Finance", "AI/ML", "Hardware", "Biomedical", "Energy", "Research"];
 
   return (
     <div className="min-h-screen bg-white/70 dark:bg-[#171717]/80 text-slate-800 dark:text-neutral-200">
@@ -931,16 +909,17 @@ export default function Home() {
             style={{ animationDelay: "0s" }}>
             Matthew Kuan
           </h1>
-          {/* A tagline, not a section — keep it out of the heading outline. */}
+          {/* A tagline, not a section, so keep it out of the heading outline. */}
           <p className="text-2xl md:text-3xl gradient-text font-bold mb-6 animate-fade-up"
             style={{ animationDelay: "0.9s" }}>
-            Biomedical Engineer &amp; Software Developer
+            Software Engineer &amp; Applied Mathematician
           </p>
           <p className="text-slate-600 dark:text-neutral-300 text-base md:text-lg max-w-2xl leading-relaxed mb-8 animate-fade-up"
             style={{ animationDelay: "1.05s" }}>
             Rising junior at <span className="text-slate-900 dark:text-neutral-50 font-medium">Stony Brook University</span> studying{" "}
             <span className="text-slate-900 dark:text-neutral-50 font-medium">Biomedical Engineering & Applied Mathematics</span> (GPA 3.72),
-            minoring in Finance. I build at the intersection of biology, signal processing, and software.
+            minoring in <span className="text-slate-900 dark:text-neutral-50 font-medium">Finance</span>. I build software and quantitative
+            models that turn messy data into decisions, across markets, engineering systems, and the lab.
           </p>
           <div className="flex flex-wrap items-center gap-3 animate-fade-up" style={{ animationDelay: "1.2s" }}>
             <a href="#projects"
@@ -949,7 +928,7 @@ export default function Home() {
             </a>
             <a href="#contact"
               className="border border-slate-300 text-slate-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-xl hover:border-accent hover:text-accent transition-colors text-sm">
-              Get In Touch
+              Contact Information
             </a>
             <div className="flex items-center gap-1 ml-2">
               <a href="https://linkedin.com/in/matt-kuan" target="_blank" rel="noopener noreferrer"
@@ -976,7 +955,7 @@ export default function Home() {
 
       {/* ── SKILLS MARQUEE ──────────────────────────────────────────────── */}
       {/* Decorative: the list is duplicated for the seamless loop, so hide it
-          from assistive tech — the real skill list lives in the Skills section. */}
+          from assistive tech, since the real skill list lives in the Skills section. */}
       <div aria-hidden="true" className="marquee-wrap border-y border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800/50 py-4 overflow-hidden">
         <div className="marquee-track flex gap-10 whitespace-nowrap w-max items-center">
           {[...MARQUEE_SKILLS, ...MARQUEE_SKILLS].map((s, i) => (
@@ -1012,19 +991,19 @@ export default function Home() {
           {/* Bio */}
           <div className="reveal space-y-4">
             <p className="text-slate-700 dark:text-neutral-300 text-base leading-relaxed">
-              Hello! I am a sophomore at Stony Brook University double majoring in Biomedical Engineering and Applied Mathematics & Statistics. I'm interested in biotechnology, data-driven research, and solving complex problems. I enjoy learning new skills across disciplines, and I'm always open to opportunities that help me grow technically and professionally.
+              Hello! I am a rising junior at Stony Brook University double majoring in Biomedical Engineering and Applied Mathematics & Statistics, with a minor in Finance. I'm interested in software engineering, quantitative analysis, and markets, and most of my favorite work has been building systems that take messy data and turn it into a decision someone can actually act on. That has looked like a full-stack investment return model, a pipeline that flags bad inputs before they reach an expensive stage, and a 10-year forecast for a multifamily acquisition. I enjoy learning new skills across disciplines, and I'm always open to opportunities that help me grow technically and professionally.
               Feel free to connect with me and contact me at matthew.kuan@stonybrook.edu.
               I studied abroad at Yonsei University in Seoul, which
               sharpened how I adapt and communicate across very different environments.
             </p>
             <p className="text-slate-700 dark:text-neutral-300 text-base leading-relaxed">
               Outside of work, I&apos;m usually moving. I picked up bouldering and
-              love heading out for outdoor climbs around the city — the climbing community is easily one of
+              love heading out for outdoor climbs around the city, and the climbing community is easily one of
               the most welcoming I&apos;ve found. I skateboard at
               the local skate park through the summer, and I spent high school managing a
               PSAL varsity fencing team, which taught me
               a lot about logistics, showing up for people, and keeping a group organized under pressure.
-              Curiosity is the common thread through all of it — I&apos;m happiest when I&apos;m learning
+              Curiosity is the common thread through all of it. I&apos;m happiest when I&apos;m learning
               something new and figuring out how it fits together.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
@@ -1032,7 +1011,7 @@ export default function Home() {
                 See My Work
               </a>
               <a href="#contact" className="border border-slate-300 text-slate-700 dark:text-neutral-300 font-medium px-5 py-2.5 rounded-xl hover:border-accent hover:text-accent transition-colors text-sm">
-                Reach Out
+                Contact Information
               </a>
             </div>
           </div>
@@ -1076,73 +1055,6 @@ export default function Home() {
                 <span key={c} className="text-xs text-slate-500 dark:text-neutral-400 bg-slate-100 dark:bg-neutral-800 px-2 py-0.5 rounded">{c}</span>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── RESEARCH ────────────────────────────────────────────────────── */}
-      <section id="research" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Labs & Publications" title="Research Experience" />
-        <div className="flex flex-col gap-5">
-          {RESEARCH.map((r) => (
-            <div key={r.org} className="card reveal">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-3">
-                <div>
-                  <p className="text-slate-900 dark:text-neutral-50 font-bold">{r.org}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-sm">{r.sub}</p>
-                </div>
-                <div className="text-left sm:text-right shrink-0">
-                  <p className="text-accent text-sm font-semibold">{r.role}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-xs">{r.date}</p>
-                </div>
-              </div>
-              <ul className="space-y-1.5 mb-4">
-                {r.bullets.map((b, i) => (
-                  <li key={i} className="text-slate-600 dark:text-neutral-300 text-sm flex gap-2.5">
-                    <span className="shrink-0 mt-1.5 w-1 h-1 rounded-full bg-accent" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-1.5">
-                {r.tags.map((t) => <Tag key={t} label={t} />)}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Interactive model of the device the lab work above describes. */}
-        <div className="mt-12 reveal">
-          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-1 flex items-center gap-2">
-            <span className="text-accent" aria-hidden="true">🔬</span>
-            Explore the dPCR Device
-          </h3>
-          <p className="text-slate-500 dark:text-neutral-400 text-sm mb-5 max-w-2xl">
-            An interactive model of the thermoplastic partitioning device I fabricate.
-            Rotate it, or select a component to read what it does and how it&apos;s made.
-          </p>
-          <MicrofluidicChip dark={dark} />
-        </div>
-
-        <div className="mt-12 reveal">
-          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-4 flex items-center gap-2">
-            <span className="text-accent" aria-hidden="true">📄</span> Poster Presentations
-          </h3>
-          <div className="flex flex-col gap-3">
-            {POSTERS.map((p) => (
-              <a key={p.title} href={p.pdf} target="_blank" rel="noopener noreferrer"
-                className="group flex gap-4 items-center p-4 bg-slate-50 dark:bg-neutral-800/50 rounded-xl border border-slate-200 dark:border-neutral-700 hover:border-accent/40 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-lg hover:shadow-accent/5 transition-all">
-                <div className="w-9 h-9 rounded-lg bg-accent-soft flex items-center justify-center shrink-0 text-accent text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">P</div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-slate-800 dark:text-neutral-100 text-sm font-medium leading-snug group-hover:text-accent transition-colors">{p.title}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-xs mt-1">{p.venue}</p>
-                </div>
-                <span className="shrink-0 text-xs font-medium text-slate-500 dark:text-neutral-400 group-hover:text-accent flex items-center gap-1 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0">
-                  View PDF
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
-                </span>
-              </a>
-            ))}
           </div>
         </div>
       </section>
@@ -1445,40 +1357,71 @@ export default function Home() {
         </p>
       </section>
 
-      {/* ── COLOPHON ────────────────────────────────────────────────────── */}
-      <section id="colophon" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Engineering Notes" title="How This Site Was Built" />
-        <p className="reveal text-slate-500 dark:text-neutral-400 text-sm mb-8 -mt-6 max-w-2xl">
-          Next.js, TypeScript, Tailwind, and three.js on Vercel. The decisions below
-          are the ones worth defending — each number was measured before and after,
-          and a couple of them started as bugs I shipped and had to catch.
-        </p>
-        <div className="grid md:grid-cols-2 gap-4">
-          {BUILD_NOTES.map((n) => (
-            <div key={n.title} className="card reveal">
-              <div className="flex items-baseline justify-between gap-3 mb-2">
-                <h3 className="text-slate-900 dark:text-neutral-50 font-bold text-sm">{n.title}</h3>
-                {n.metric && (
-                  <span className="shrink-0 font-mono text-[11px] text-accent bg-accent-soft/60 border border-accent/20 px-2 py-0.5 rounded-full">
-                    {n.metric}
-                  </span>
-                )}
+      {/* ── RESEARCH ────────────────────────────────────────────────────── */}
+      <section id="research" className="max-w-5xl mx-auto px-6 py-20">
+        <SectionHeading label="Labs & Publications" title="Research Experience" />
+        <div className="flex flex-col gap-5">
+          {RESEARCH.map((r) => (
+            <div key={r.org} className="card reveal">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-3">
+                <div>
+                  <p className="text-slate-900 dark:text-neutral-50 font-bold">{r.org}</p>
+                  <p className="text-slate-500 dark:text-neutral-400 text-sm">{r.sub}</p>
+                </div>
+                <div className="text-left sm:text-right shrink-0">
+                  <p className="text-accent text-sm font-semibold">{r.role}</p>
+                  <p className="text-slate-500 dark:text-neutral-400 text-xs">{r.date}</p>
+                </div>
               </div>
-              <p className="text-slate-600 dark:text-neutral-300 text-sm leading-relaxed">{n.body}</p>
+              <ul className="space-y-1.5 mb-4">
+                {r.bullets.map((b, i) => (
+                  <li key={i} className="text-slate-600 dark:text-neutral-300 text-sm flex gap-2.5">
+                    <span className="shrink-0 mt-1.5 w-1 h-1 rounded-full bg-accent" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-1.5">
+                {r.tags.map((t) => <Tag key={t} label={t} />)}
+              </div>
             </div>
           ))}
         </div>
-        <p className="reveal text-slate-500 dark:text-neutral-400 text-xs mt-6">
-          Source:{" "}
-          <a
-            href="https://github.com/s3raphsembrace/portfolio"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent hover:underline"
-          >
-            github.com/s3raphsembrace/portfolio
-          </a>
-        </p>
+
+        {/* Interactive model of the device the lab work above describes. */}
+        <div className="mt-12 reveal">
+          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-1 flex items-center gap-2">
+            <span className="text-accent" aria-hidden="true">🔬</span>
+            Explore the dPCR Device
+          </h3>
+          <p className="text-slate-500 dark:text-neutral-400 text-sm mb-5 max-w-2xl">
+            An interactive model of the thermoplastic partitioning device I fabricate.
+            Rotate it, or select a component to read what it does and how it&apos;s made.
+          </p>
+          <MicrofluidicChip dark={dark} />
+        </div>
+
+        <div className="mt-12 reveal">
+          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-4 flex items-center gap-2">
+            <span className="text-accent" aria-hidden="true">📄</span> Poster Presentations
+          </h3>
+          <div className="flex flex-col gap-3">
+            {POSTERS.map((p) => (
+              <a key={p.title} href={p.pdf} target="_blank" rel="noopener noreferrer"
+                className="group flex gap-4 items-center p-4 bg-slate-50 dark:bg-neutral-800/50 rounded-xl border border-slate-200 dark:border-neutral-700 hover:border-accent/40 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-lg hover:shadow-accent/5 transition-all">
+                <div className="w-9 h-9 rounded-lg bg-accent-soft flex items-center justify-center shrink-0 text-accent text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">P</div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-slate-800 dark:text-neutral-100 text-sm font-medium leading-snug group-hover:text-accent transition-colors">{p.title}</p>
+                  <p className="text-slate-500 dark:text-neutral-400 text-xs mt-1">{p.venue}</p>
+                </div>
+                <span className="shrink-0 text-xs font-medium text-slate-500 dark:text-neutral-400 group-hover:text-accent flex items-center gap-1 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0">
+                  View PDF
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── CONTACT ─────────────────────────────────────────────────────── */}
@@ -1486,14 +1429,9 @@ export default function Home() {
         <div className="reveal relative overflow-hidden rounded-3xl bg-slate-900 dark:bg-neutral-800 px-8 py-14 md:px-14">
           <div className="blob bg-accent/30 w-[300px] h-[300px] top-[-80px] right-[-40px]" />
           <div className="relative z-10">
-            <span className="section-label text-accent-light">
-              <span className="w-6 h-px bg-accent-light inline-block" /> Get In Touch
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Let's build something.</h2>
-            <p className="text-slate-300 text-sm md:text-base max-w-lg mb-8">
-              Open to internship opportunities in SWE, Bioinformatics, Quantitative Finance,
-              Pharmaceutical R&D, and related fields. Always happy to chat.
-            </p>
+            <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-10 tracking-tight">
+              Contact Information
+            </h2>
             <div className="grid sm:grid-cols-2 gap-3 max-w-2xl">
               {[
                 { label: "Email", value: "matthew.kuan@stonybrook.edu", href: "mailto:matthew.kuan@stonybrook.edu" },
