@@ -41,10 +41,10 @@ const CURRENTLY = {
 const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
+  { label: "Research", href: "#research" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Coursework", href: "#coursework" },
-  { label: "Research", href: "#research" },
   { label: "Contact Information", href: "#contact" },
 ];
 
@@ -407,7 +407,6 @@ const SKILLS: Record<string, string[]> = {
   "Frameworks & Libraries": ["React", "Next.js", "Node.js", "Express", "Spring Boot", "Angular", "Tailwind CSS", "Pandas", "NumPy", "Jupyter"],
   "Cloud & Data": ["AWS", "Docker", "Git", "MongoDB", "PostgreSQL"],
   "Design & Tools": ["Fusion 360", "AutoCAD", "CHITUBOX", "Bambu Studio", "Canva", "Adobe Express", "Photoshop", "IBM SPSS"],
-  "Bioinformatics & Lab Techniques": ["DAVID", "Panther DB", "EPI2ME", "Nextflow", "SnapGene", "SU-8 Photolithography", "Hot Embossing", "UV Bonding", "Oxygen Plasma", "Fluorescent Microscopy", "ImageJ", "RT-PCR", "Western Blotting", "ELISA"],
 };
 
 // Maps a skill/tech name → Devicon icon path (served from jsDelivr CDN).
@@ -837,6 +836,8 @@ export default function Home() {
             </button>
             <a
               href="/Matthew_Kuan_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-shine text-xs font-semibold bg-slate-900 dark:bg-accent text-white dark:text-neutral-900 px-4 py-2 rounded-lg hover:bg-accent dark:hover:bg-accent-light transition-colors"
             >
               Resume ↗
@@ -858,7 +859,7 @@ export default function Home() {
                 aria-current={activeSection === l.href.slice(1) ? "true" : undefined}
                 onClick={() => setMobileMenuOpen(false)}>{l.label}</a>
             ))}
-            <a href="/Matthew_Kuan_Resume.pdf" className="text-sm font-semibold text-accent">Resume ↗</a>
+            <a href="/Matthew_Kuan_Resume.pdf" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-accent">Resume ↗</a>
             <button
               onClick={toggleTheme}
               className="text-left text-sm font-medium text-slate-500 dark:text-neutral-400 hover:text-accent transition-colors"
@@ -916,7 +917,7 @@ export default function Home() {
           </p>
           <p className="text-slate-600 dark:text-neutral-300 text-base md:text-lg max-w-2xl leading-relaxed mb-8 animate-fade-up"
             style={{ animationDelay: "1.05s" }}>
-            Rising junior at <span className="text-slate-900 dark:text-neutral-50 font-medium">Stony Brook University</span> studying{" "}
+            Junior at <span className="text-slate-900 dark:text-neutral-50 font-medium">Stony Brook University</span> studying{" "}
             <span className="text-slate-900 dark:text-neutral-50 font-medium">Biomedical Engineering & Applied Mathematics</span> (GPA 3.72),
             minoring in <span className="text-slate-900 dark:text-neutral-50 font-medium">Finance</span>. I build software and quantitative
             models that turn messy data into decisions, across markets, engineering systems, and the lab.
@@ -982,7 +983,7 @@ export default function Home() {
               />
             </div>
             <div className="mt-4 flex flex-wrap gap-2 justify-center">
-              {["🧗 Bouldering", "🛹 Skating", "🤺 Fencing", "✈️ Seoul '25"].map((f) => (
+              {["🧗 Bouldering", "🛹 Skating", "🤺 Fencing"].map((f) => (
                 <span key={f} className="text-xs text-slate-600 dark:text-neutral-300 bg-slate-100 dark:bg-neutral-800 border border-slate-200 dark:border-neutral-700 px-2.5 py-1 rounded-full">{f}</span>
               ))}
             </div>
@@ -991,7 +992,7 @@ export default function Home() {
           {/* Bio */}
           <div className="reveal space-y-4">
             <p className="text-slate-700 dark:text-neutral-300 text-base leading-relaxed">
-              Hello! I am a rising junior at Stony Brook University double majoring in Biomedical Engineering and Applied Mathematics & Statistics, with a minor in Finance. I'm interested in software engineering, quantitative analysis, and markets, and most of my favorite work has been building systems that take messy data and turn it into a decision someone can actually act on. That has looked like a full-stack investment return model, a pipeline that flags bad inputs before they reach an expensive stage, and a 10-year forecast for a multifamily acquisition. I enjoy learning new skills across disciplines, and I'm always open to opportunities that help me grow technically and professionally.
+              Hello! I am a junior at Stony Brook University double majoring in Biomedical Engineering and Applied Mathematics & Statistics, with a minor in Finance. I'm interested in software engineering, quantitative analysis, and markets, and most of my favorite work has been building systems that take messy data and turn it into a decision someone can actually act on. That has looked like a full-stack investment return model, a pipeline that flags bad inputs before they reach an expensive stage, and a 10-year forecast for a multifamily acquisition. I enjoy learning new skills across disciplines, and I'm always open to opportunities that help me grow technically and professionally.
               Feel free to connect with me and contact me at matthew.kuan@stonybrook.edu.
               I studied abroad at Yonsei University in Seoul, which
               sharpened how I adapt and communicate across very different environments.
@@ -1034,7 +1035,7 @@ export default function Home() {
               Minor: Finance · Biomechanics & Materials · <span className="text-accent font-semibold">GPA 3.72</span>
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {["Linear Algebra", "Probability & Stats", "Principles of Finance", "Organic Chem I & II", "Genetic Engineering", "Data Science w/ Python"].map(c => (
+              {["Probability & Statistics", "Differential Equations", "Principles of Finance", "Financial Accounting", "Personal Finance"].map(c => (
                 <span key={c} className="text-xs text-slate-500 dark:text-neutral-400 bg-slate-100 dark:bg-neutral-800 px-2 py-0.5 rounded">{c}</span>
               ))}
             </div>
@@ -1099,6 +1100,73 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── RESEARCH ────────────────────────────────────────────────────── */}
+      <section id="research" className="max-w-5xl mx-auto px-6 py-20">
+        <SectionHeading label="Labs & Publications" title="Research Experience" />
+        <div className="flex flex-col gap-5">
+          {RESEARCH.map((r) => (
+            <div key={r.org} className="card reveal">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-3">
+                <div>
+                  <p className="text-slate-900 dark:text-neutral-50 font-bold">{r.org}</p>
+                  <p className="text-slate-500 dark:text-neutral-400 text-sm">{r.sub}</p>
+                </div>
+                <div className="text-left sm:text-right shrink-0">
+                  <p className="text-accent text-sm font-semibold">{r.role}</p>
+                  <p className="text-slate-500 dark:text-neutral-400 text-xs">{r.date}</p>
+                </div>
+              </div>
+              <ul className="space-y-1.5 mb-4">
+                {r.bullets.map((b, i) => (
+                  <li key={i} className="text-slate-600 dark:text-neutral-300 text-sm flex gap-2.5">
+                    <span className="shrink-0 mt-1.5 w-1 h-1 rounded-full bg-accent" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-1.5">
+                {r.tags.map((t) => <Tag key={t} label={t} />)}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Interactive model of the device the lab work above describes. */}
+        <div className="mt-12 reveal">
+          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-1 flex items-center gap-2">
+            <span className="text-accent" aria-hidden="true">🔬</span>
+            Explore the dPCR Device
+          </h3>
+          <p className="text-slate-500 dark:text-neutral-400 text-sm mb-5 max-w-2xl">
+            An interactive model of the thermoplastic partitioning device I fabricate.
+            Rotate it, or select a component to read what it does and how it&apos;s made.
+          </p>
+          <MicrofluidicChip dark={dark} />
+        </div>
+
+        <div className="mt-12 reveal">
+          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-4 flex items-center gap-2">
+            <span className="text-accent" aria-hidden="true">📄</span> Poster Presentations
+          </h3>
+          <div className="flex flex-col gap-3">
+            {POSTERS.map((p) => (
+              <a key={p.title} href={p.pdf} target="_blank" rel="noopener noreferrer"
+                className="group flex gap-4 items-center p-4 bg-slate-50 dark:bg-neutral-800/50 rounded-xl border border-slate-200 dark:border-neutral-700 hover:border-accent/40 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-lg hover:shadow-accent/5 transition-all">
+                <div className="w-9 h-9 rounded-lg bg-accent-soft flex items-center justify-center shrink-0 text-accent text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">P</div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-slate-800 dark:text-neutral-100 text-sm font-medium leading-snug group-hover:text-accent transition-colors">{p.title}</p>
+                  <p className="text-slate-500 dark:text-neutral-400 text-xs mt-1">{p.venue}</p>
+                </div>
+                <span className="shrink-0 text-xs font-medium text-slate-500 dark:text-neutral-400 group-hover:text-accent flex items-center gap-1 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0">
+                  View PDF
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                </span>
+              </a>
             ))}
           </div>
         </div>
@@ -1355,73 +1423,6 @@ export default function Home() {
           </a>
           .
         </p>
-      </section>
-
-      {/* ── RESEARCH ────────────────────────────────────────────────────── */}
-      <section id="research" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Labs & Publications" title="Research Experience" />
-        <div className="flex flex-col gap-5">
-          {RESEARCH.map((r) => (
-            <div key={r.org} className="card reveal">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-3">
-                <div>
-                  <p className="text-slate-900 dark:text-neutral-50 font-bold">{r.org}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-sm">{r.sub}</p>
-                </div>
-                <div className="text-left sm:text-right shrink-0">
-                  <p className="text-accent text-sm font-semibold">{r.role}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-xs">{r.date}</p>
-                </div>
-              </div>
-              <ul className="space-y-1.5 mb-4">
-                {r.bullets.map((b, i) => (
-                  <li key={i} className="text-slate-600 dark:text-neutral-300 text-sm flex gap-2.5">
-                    <span className="shrink-0 mt-1.5 w-1 h-1 rounded-full bg-accent" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-1.5">
-                {r.tags.map((t) => <Tag key={t} label={t} />)}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Interactive model of the device the lab work above describes. */}
-        <div className="mt-12 reveal">
-          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-1 flex items-center gap-2">
-            <span className="text-accent" aria-hidden="true">🔬</span>
-            Explore the dPCR Device
-          </h3>
-          <p className="text-slate-500 dark:text-neutral-400 text-sm mb-5 max-w-2xl">
-            An interactive model of the thermoplastic partitioning device I fabricate.
-            Rotate it, or select a component to read what it does and how it&apos;s made.
-          </p>
-          <MicrofluidicChip dark={dark} />
-        </div>
-
-        <div className="mt-12 reveal">
-          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-4 flex items-center gap-2">
-            <span className="text-accent" aria-hidden="true">📄</span> Poster Presentations
-          </h3>
-          <div className="flex flex-col gap-3">
-            {POSTERS.map((p) => (
-              <a key={p.title} href={p.pdf} target="_blank" rel="noopener noreferrer"
-                className="group flex gap-4 items-center p-4 bg-slate-50 dark:bg-neutral-800/50 rounded-xl border border-slate-200 dark:border-neutral-700 hover:border-accent/40 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-lg hover:shadow-accent/5 transition-all">
-                <div className="w-9 h-9 rounded-lg bg-accent-soft flex items-center justify-center shrink-0 text-accent text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">P</div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-slate-800 dark:text-neutral-100 text-sm font-medium leading-snug group-hover:text-accent transition-colors">{p.title}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-xs mt-1">{p.venue}</p>
-                </div>
-                <span className="shrink-0 text-xs font-medium text-slate-500 dark:text-neutral-400 group-hover:text-accent flex items-center gap-1 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0">
-                  View PDF
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ── CONTACT ─────────────────────────────────────────────────────── */}
