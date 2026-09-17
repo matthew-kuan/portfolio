@@ -41,63 +41,10 @@ const CURRENTLY = {
 const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Research", href: "#research" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Coursework", href: "#coursework" },
   { label: "Contact Information", href: "#contact" },
-];
-
-const RESEARCH = [
-  {
-    org: "Microfluidics for Quantitative and Genomics Biology Lab",
-    sub: "Stony Brook University",
-    role: "Research and Development Engineer + Project Lead",
-    date: "Aug 2025 – Present",
-    bullets: [
-      "Designed and fabricated thermoplastic dPCR partitioning devices using multilayer SU-8 photolithography, hot embossing, and UV-curable adhesive bonding as a cost-effective alternative to conventional PDMS fabrication.",
-      "Diagnosed and resolved fabrication failures, such as non-uniform imprints and restricted liquid flow, by implementing a custom leveling apparatus during oven curing and bracing the substrate against lateral spreading.",
-      "Evaluated device performance using brightfield and fluorescent microscopy to assess partitioning efficiency and fabrication quality; performed contact angle measurements using DI water, NOA72, and NEA121RED on native and plasma-treated polycarbonate surfaces, analyzed with ImageJ to characterize adhesive wettability.",
-      "Executed quality control audits using brightfield macroscopic imaging to assess microstructure integrity, functional reliability, and dimensional consistency across fabrication batches.",
-      "Streamlined device synthesis workflows and process development protocols, improving production yield and structural consistency across fabrication cycles.",
-      "Engineered complex testing devices to investigate cellular heterogeneity and support high-throughput, scalable experiments aligned with new development protocols.",
-      "Onboarded and mentored an incoming lab member on fabrication protocols, organizational practices, and systematic troubleshooting approaches, reinforcing research continuity across semester transitions.",
-      "Maintained comprehensive records in alignment with laboratory data standards, contributing to reproducible and auditable research documentation.",
-    ],
-    tags: ["Microfluidics", "dPCR", "Photolithography", "ImageJ", "Cleanroom"],
-  },
-  {
-    org: "Low-Intensity Vibration (LIV) Lab",
-    sub: "Stony Brook University",
-    role: "Data Analyst",
-    date: "Jan 2025 – May 2025",
-    bullets: [
-      "Developed a Frequency and Amplitude Modulated Sweep (FAMS) vibration signal to model physiologically relevant mechanical stimuli (20\u201350 Hz) for T-cell proliferation studies supporting CAR-T biomanufacturing.",
-      "Engineered and validated a LabVIEW-controlled LIV device integrating an Arduino microcontroller, linear voice-coil actuator, and tri-axis accelerometer to generate custom bilateral sweep signals (0\u201335 Hz).",
-      "Built a Python-based quality-control analytics pipeline (pandas, NumPy, SciPy, Plotly, enDAQ) to verify laboratory device sweep signal frequency accuracy, detect noise artifacts, compute acceleration, and flag deviations.",
-      "Collaborated with a multidisciplinary team to streamline validation workflows by proposing real-time acceleration feedback integration (PID), eliminating manual data export steps, and supporting experimental timelines.",
-      "Compiled experimental findings into comprehensive research reports and poster presentations; delivered concise project updates during weekly cross-functional lab meetings and reviewed relevant literature and lab documentation.",
-      "Analyzed accelerometer data to identify oscillation artifacts at higher frequencies (36\u201350 Hz), informing hardware and software redesign for improved signal stability.",
-      "Prepared experimental plans for upcoming in vitro T-cell stimulation studies, aligning FAMS signal parameters with prior foundational research on LIV-induced proliferation.",
-      "Managed lab data practices for quantifying cell proliferation, gene expression, and protein assays, adhering to research standards to ensure data integrity and organized documentation.",
-      "Performed primary cell culture in sterile conditions, recording microscopic imaging observations and evaluating experimental results through ELISA and Western Blotting protein assays.",
-      "Explored Oxford Nanopore Technologies\u2019 EPI2ME platform and wf-teloseq Nextflow workflow to assess feasibility of telomere-length sequencing as a biomarker readout for LIV-stimulated T-cell studies.",
-    ],
-    tags: ["Python", "LabVIEW", "Arduino", "SciPy", "Signal Processing"],
-  },
-  {
-    org: "Aquatic Research Environmental Assessment Center",
-    sub: "Brooklyn College",
-    role: "Research Intern",
-    date: "Jul 2023 – Sep 2023",
-    bullets: [
-      "Analyzed qualitative and quantitative organism data to assess chemical exposure effects on aquatic ecosystems.",
-      "Administered controlled chemical treatments and coordinated experimental procedures with a research team.",
-      "Completed coursework in scientific principles, laboratory research methods, and data analysis techniques.",
-      "Represented the research group in a poster presentation at the NYCSRM Consortium at the American Museum of Natural History.",
-    ],
-    tags: ["Data Analysis", "Environmental Science"],
-  },
 ];
 
 const EXPERIENCE: {
@@ -175,6 +122,44 @@ const EXPERIENCE: {
     ],
   },
   {
+    org: "Microfluidics for Quantitative and Genomics Biology Lab",
+    sub: "Stony Brook University",
+    role: "Research and Development Engineer + Project Lead",
+    date: "Aug 2025 – Present",
+    location: "Stony Brook, NY",
+    bullets: [
+      "Designed and fabricated thermoplastic dPCR partitioning devices using multilayer SU-8 photolithography, hot embossing, and UV-curable adhesive bonding as a cost-effective alternative to conventional PDMS fabrication.",
+      "Diagnosed and resolved fabrication failures, such as non-uniform imprints and restricted liquid flow, by implementing a custom leveling apparatus during oven curing and bracing the substrate against lateral spreading.",
+      "Evaluated device performance using brightfield and fluorescent microscopy to assess partitioning efficiency and fabrication quality; performed contact angle measurements using DI water, NOA72, and NEA121RED on native and plasma-treated polycarbonate surfaces, analyzed with ImageJ to characterize adhesive wettability.",
+      "Executed quality control audits using brightfield macroscopic imaging to assess microstructure integrity, functional reliability, and dimensional consistency across fabrication batches.",
+      "Streamlined device synthesis workflows and process development protocols, improving production yield and structural consistency across fabrication cycles.",
+      "Engineered complex testing devices to investigate cellular heterogeneity and support high-throughput, scalable experiments aligned with new development protocols.",
+      "Onboarded and mentored an incoming lab member on fabrication protocols, organizational practices, and systematic troubleshooting approaches, reinforcing research continuity across semester transitions.",
+      "Maintained comprehensive records in alignment with laboratory data standards, contributing to reproducible and auditable research documentation.",
+    ],
+    tags: ["Microfluidics", "dPCR", "Photolithography", "ImageJ", "Cleanroom"],
+  },
+  {
+    org: "Low-Intensity Vibration (LIV) Lab",
+    sub: "Stony Brook University",
+    role: "Data Analyst",
+    date: "Jan 2025 – May 2025",
+    location: "Stony Brook, NY",
+    bullets: [
+      "Developed a Frequency and Amplitude Modulated Sweep (FAMS) vibration signal to model physiologically relevant mechanical stimuli (20\u201350 Hz) for T-cell proliferation studies supporting CAR-T biomanufacturing.",
+      "Engineered and validated a LabVIEW-controlled LIV device integrating an Arduino microcontroller, linear voice-coil actuator, and tri-axis accelerometer to generate custom bilateral sweep signals (0\u201335 Hz).",
+      "Built a Python-based quality-control analytics pipeline (pandas, NumPy, SciPy, Plotly, enDAQ) to verify laboratory device sweep signal frequency accuracy, detect noise artifacts, compute acceleration, and flag deviations.",
+      "Collaborated with a multidisciplinary team to streamline validation workflows by proposing real-time acceleration feedback integration (PID), eliminating manual data export steps, and supporting experimental timelines.",
+      "Compiled experimental findings into comprehensive research reports and poster presentations; delivered concise project updates during weekly cross-functional lab meetings and reviewed relevant literature and lab documentation.",
+      "Analyzed accelerometer data to identify oscillation artifacts at higher frequencies (36\u201350 Hz), informing hardware and software redesign for improved signal stability.",
+      "Prepared experimental plans for upcoming in vitro T-cell stimulation studies, aligning FAMS signal parameters with prior foundational research on LIV-induced proliferation.",
+      "Managed lab data practices for quantifying cell proliferation, gene expression, and protein assays, adhering to research standards to ensure data integrity and organized documentation.",
+      "Performed primary cell culture in sterile conditions, recording microscopic imaging observations and evaluating experimental results through ELISA and Western Blotting protein assays.",
+      "Explored Oxford Nanopore Technologies\u2019 EPI2ME platform and wf-teloseq Nextflow workflow to assess feasibility of telomere-length sequencing as a biomarker readout for LIV-stimulated T-cell studies.",
+    ],
+    tags: ["Python", "LabVIEW", "Arduino", "SciPy", "Signal Processing"],
+  },
+  {
     org: "Rendr Internal Medicine",
     sub: "Private Practice",
     role: "Shadowing & Medical Intern",
@@ -186,6 +171,20 @@ const EXPERIENCE: {
       "Scheduled follow-up appointments and developed a working understanding of clinical workflows, diagnostic procedures, and patient care approaches from the provider\u2019s perspective.",
     ],
     tags: ["Clinical", "Patient Care", "Healthcare"],
+  },
+  {
+    org: "Aquatic Research Environmental Assessment Center",
+    sub: "Brooklyn College",
+    role: "Research Intern",
+    date: "Jul 2023 – Sep 2023",
+    location: "Brooklyn, NY",
+    bullets: [
+      "Analyzed qualitative and quantitative organism data to assess chemical exposure effects on aquatic ecosystems.",
+      "Administered controlled chemical treatments and coordinated experimental procedures with a research team.",
+      "Completed coursework in scientific principles, laboratory research methods, and data analysis techniques.",
+      "Represented the research group in a poster presentation at the NYCSRM Consortium at the American Museum of Natural History.",
+    ],
+    tags: ["Data Analysis", "Environmental Science"],
   },
 ];
 
@@ -205,6 +204,34 @@ const PROJECTS: {
   demo?: string;
   extra?: { label: string; href: string };
 }[] = [
+  {
+    name: "Buy or Wait?",
+    impact: "Placed #56 of 3,062 with an affordability agent where the model reads evidence but never produces a number.",
+    stack: "Python \u00b7 Google Gemini API \u00b7 Decimal \u00b7 pytest",
+    context: "HackerRank Orchestrate, Sep 2026 \u00b7 #56 / 3062",
+    bullets: [
+      "Built a financial agent that decides whether a user can safely afford a purchase and recommends paying in full, partially, in installments, waiting, or not proceeding, across 250 requests in five currencies.",
+      "Reconciled each user's transactions into a ledger (cancellations, duplicates, linked lifecycles, dated FX, recurring series detection) and projected a 90-day daily balance to test every plan against their minimum balance.",
+      "Solved the largest safe payment with a cent-level binary search and the earliest safe full-payment date with a forecast scan, then ranked candidate plans on six ordered rules to set status and payment method.",
+      "Limited Gemini to classifying messages and reading amounts off images through closed-schema JSON, with prompt-injection flagging, a numeric guard on explanations, a response cache, and a scoring harness over golden fixtures.",
+    ],
+    tags: ["Finance", "AI/ML", "SWE"],
+    repo: "https://github.com/matthew-kuan/buy-or-wait",
+  },
+  {
+    name: "Study Assistant",
+    impact: "Turns lecture PDFs, recordings, and YouTube links into notes, flashcards, and quizzes, fully on-device.",
+    stack: "Angular \u00b7 Spring Boot \u00b7 Java \u00b7 SQLite \u00b7 Ollama \u00b7 whisper.cpp \u00b7 Kokoro TTS",
+    context: "Personal Project",
+    bullets: [
+      "Built a local-first study tool: drop in lecture PDFs, audio, video, or a YouTube link and get study notes, key terms, flashcards, and a self-grading quiz, with no data leaving the machine.",
+      "Wrote a Spring Boot backend that extracts and cleans PDF text page by page, transcribes audio locally with whisper.cpp when captions are missing, and runs map/reduce generation over long documents with Ollama.",
+      "Added a Listen mode that reads notes aloud with browser voices or a Kokoro sidecar, rewrites math into spoken words first, and highlights the passage being read so clicking any section jumps the audio there.",
+      "Packaged the Angular front end into a single runnable jar with one-click installers for the optional speech and media tools.",
+    ],
+    tags: ["SWE", "AI/ML"],
+    repo: "https://github.com/s3raphsembrace/study-assistant",
+  },
   {
     name: "Mutual Fund Investment Predictor",
     impact: "Full-stack return model over live market data, covering 48 mutual funds and 20 bond funds.",
@@ -913,7 +940,7 @@ export default function Home() {
           {/* A tagline, not a section, so keep it out of the heading outline. */}
           <p className="text-2xl md:text-3xl gradient-text font-bold mb-6 animate-fade-up"
             style={{ animationDelay: "0.9s" }}>
-            Software Engineer &amp; Applied Mathematician
+            Engineering &amp; Maths
           </p>
           <p className="text-slate-600 dark:text-neutral-300 text-base md:text-lg max-w-2xl leading-relaxed mb-8 animate-fade-up"
             style={{ animationDelay: "1.05s" }}>
@@ -941,6 +968,11 @@ export default function Home() {
                 aria-label="Matthew Kuan on GitHub (opens in a new tab)"
                 className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-neutral-700 text-slate-500 dark:text-neutral-400 hover:text-accent hover:border-accent transition-colors">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" /></svg>
+              </a>
+              <a href="https://www.hackerrank.com/profile/kmatthew8363" target="_blank" rel="noopener noreferrer"
+                aria-label="Matthew Kuan on HackerRank (opens in a new tab)"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-neutral-700 text-slate-500 dark:text-neutral-400 hover:text-accent hover:border-accent transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 0v24h24V0zm9.95 8.002h1.805c.061 0 .111.05.111.111v7.767c0 .061-.05.111-.11.111H9.95c-.061 0-.111-.05-.111-.11v-2.87H7.894v2.87c0 .06-.05.11-.11.11H5.976a.11.11 0 01-.11-.11V8.112c0-.06.05-.11.11-.11h1.806c.061 0 .11.05.11.11v2.869H9.84v-2.87c0-.06.05-.11.11-.11zm2.999 0h5.778c.061 0 .111.05.111.11v7.767a.11.11 0 01-.11.112h-5.78a.11.11 0 01-.11-.11V8.111c0-.06.05-.11.11-.11z" /></svg>
               </a>
             </div>
           </div>
@@ -1062,7 +1094,7 @@ export default function Home() {
 
       {/* ── EXPERIENCE ──────────────────────────────────────────────────── */}
       <section id="experience" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Where I've Worked" title="Experience" />
+        <SectionHeading label="Industry & Research" title="Experience" />
         <div className="relative">
           <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-accent via-slate-200 to-transparent" />
           <div className="flex flex-col gap-6">
@@ -1102,38 +1134,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── RESEARCH ────────────────────────────────────────────────────── */}
-      <section id="research" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Labs & Publications" title="Research Experience" />
-        <div className="flex flex-col gap-5">
-          {RESEARCH.map((r) => (
-            <div key={r.org} className="card reveal">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-3">
-                <div>
-                  <p className="text-slate-900 dark:text-neutral-50 font-bold">{r.org}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-sm">{r.sub}</p>
-                </div>
-                <div className="text-left sm:text-right shrink-0">
-                  <p className="text-accent text-sm font-semibold">{r.role}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-xs">{r.date}</p>
-                </div>
-              </div>
-              <ul className="space-y-1.5 mb-4">
-                {r.bullets.map((b, i) => (
-                  <li key={i} className="text-slate-600 dark:text-neutral-300 text-sm flex gap-2.5">
-                    <span className="shrink-0 mt-1.5 w-1 h-1 rounded-full bg-accent" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-1.5">
-                {r.tags.map((t) => <Tag key={t} label={t} />)}
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Interactive model of the device the lab work above describes. */}

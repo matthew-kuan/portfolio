@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const SITE = "https://matthew-kuan-portfolio.vercel.app";
-const TITLE = "Matthew Kuan | Software Engineer & Applied Mathematician";
+const TITLE = "Matthew Kuan | Engineering & Maths";
 const DESCRIPTION =
   "Biomedical Engineering & Applied Mathematics student at Stony Brook University, minoring in Finance. I build software and quantitative models that turn messy data into decisions, from investment return engines to full-stack AI web apps.";
 
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Matthew Kuan | Software Engineer & Applied Mathematician",
+        alt: "Matthew Kuan | Engineering & Maths",
       },
     ],
   },
