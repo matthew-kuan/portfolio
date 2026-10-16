@@ -12,7 +12,7 @@ const loadMotionFeatures = () =>
 
 // three.js is ~150 kB and purely decorative, so keep it out of the initial bundle
 // and off the server render so it never blocks first paint.
-const ThreeBackground = dynamic(() => import("./ThreeBackground"), {
+const GlyphBackground = dynamic(() => import("./GlyphBackground"), {
   ssr: false,
   loading: () => null,
 });
@@ -138,20 +138,21 @@ const EXPERIENCE: {
       "Maintained comprehensive records in alignment with laboratory data standards, contributing to reproducible and auditable research documentation.",
     ],
     tags: ["Microfluidics", "dPCR", "Photolithography", "ImageJ", "Cleanroom"],
+    links: [{ label: "Lab Website", href: "https://you.stonybrook.edu/mf4qgb/" }],
   },
   {
     org: "Low-Intensity Vibration (LIV) Lab",
     sub: "Stony Brook University",
-    role: "Data Analyst",
-    date: "Jan 2025 – May 2025",
+    role: "Undergraduate Research Assistant",
+    date: "Jan 2025 – Present",
     location: "Stony Brook, NY",
     bullets: [
-      "Developed a Frequency and Amplitude Modulated Sweep (FAMS) vibration signal to model physiologically relevant mechanical stimuli (20\u201350 Hz) for T-cell proliferation studies supporting CAR-T biomanufacturing.",
+      "Developed a Frequency and Amplitude Modulated Sweep (FAMS) vibration signal driving 0\u201350 Hz bilateral sweeps with closed-loop PID acceleration feedback, modeling physiologically relevant mechanical stimuli (20\u201350 Hz) for T-cell proliferation studies supporting CAR-T biomanufacturing.",
       "Engineered and validated a LabVIEW-controlled LIV device integrating an Arduino microcontroller, linear voice-coil actuator, and tri-axis accelerometer to generate custom bilateral sweep signals (0\u201335 Hz).",
-      "Built a Python-based quality-control analytics pipeline (pandas, NumPy, SciPy, Plotly, enDAQ) to verify laboratory device sweep signal frequency accuracy, detect noise artifacts, compute acceleration, and flag deviations.",
+      "Built a Python-based quality-control analytics pipeline (pandas, NumPy, SciPy, Plotly, enDAQ) to verify laboratory device sweep signal frequency accuracy, detect noise artifacts, compute acceleration, and flag accelerations above a 0.9g threshold.",
       "Collaborated with a multidisciplinary team to streamline validation workflows by proposing real-time acceleration feedback integration (PID), eliminating manual data export steps, and supporting experimental timelines.",
       "Compiled experimental findings into comprehensive research reports and poster presentations; delivered concise project updates during weekly cross-functional lab meetings and reviewed relevant literature and lab documentation.",
-      "Analyzed accelerometer data to identify oscillation artifacts at higher frequencies (36\u201350 Hz), informing hardware and software redesign for improved signal stability.",
+      "Analyzed accelerometer data to surface oscillation artifacts at higher frequencies (35\u201350 Hz) that drove a software redesign for improved signal stability.",
       "Prepared experimental plans for upcoming in vitro T-cell stimulation studies, aligning FAMS signal parameters with prior foundational research on LIV-induced proliferation.",
       "Managed lab data practices for quantifying cell proliferation, gene expression, and protein assays, adhering to research standards to ensure data integrity and organized documentation.",
       "Performed primary cell culture in sterile conditions, recording microscopic imaging observations and evaluating experimental results through ELISA and Western Blotting protein assays.",
@@ -160,10 +161,10 @@ const EXPERIENCE: {
     tags: ["Python", "LabVIEW", "Arduino", "SciPy", "Signal Processing"],
   },
   {
-    org: "Rendr Internal Medicine",
+    org: "Rendr Internal Medicine & Oncology",
     sub: "Private Practice",
-    role: "Shadowing & Medical Intern",
-    date: "Jul 2024 \u2013 Jan 2026",
+    role: "Medical Assistant & Shadowing",
+    date: "Jul 2024 \u2013 Jan 2025",
     location: "New York, NY",
     bullets: [
       "Directed patients and families to appropriate departments, responded to a high volume of walk-in inquiries with professionalism, and coordinated referrals across specialties.",
@@ -205,6 +206,19 @@ const PROJECTS: {
   extra?: { label: string; href: string };
 }[] = [
   {
+    name: "Iris: Clip-On Smart Glasses",
+    impact: "Won #1 of 519 for Best Neon Database Usage with a clip-on camera and display that makes any pair of glasses proactive.",
+    stack: "Python \u00b7 FastAPI \u00b7 WebSockets \u00b7 React Native (Expo) \u00b7 React Three Fiber \u00b7 ElevenLabs \u00b7 Neon \u00b7 Figma",
+    context: "MHacks 2026, Oct 2026 \u00b7 #1 / 519 Best Neon Database Usage",
+    bullets: [
+      "Developed the Python/FastAPI \u201cbrain\u201d for a clip-on camera and display that turns any glasses into proactive smart glasses, deciding on its own when to stay silent, show something on the display, or speak.",
+      "Built the gate that decides whether a moment is worth interrupting the wearer, with a dashboard trace of what Iris saw, what it considered, and which rule held it back; the first spoken word of an answer arrives in about 1.7 seconds on the real glasses.",
+      "Streamed answers over WebSockets to a React Expo mobile app and a React Three Fiber web dashboard, and added ElevenLabs speech to improve accessibility so users can talk with their saved memories.",
+    ],
+    tags: ["SWE", "AI/ML", "Hardware"],
+    extra: { label: "Devpost", href: "https://devpost.com/software/iris-o0d6uh" },
+  },
+  {
     name: "Buy or Wait?",
     impact: "Placed #56 of 3,062 with an affordability agent where the model reads evidence but never produces a number.",
     stack: "Python \u00b7 Google Gemini API \u00b7 Decimal \u00b7 pytest",
@@ -222,7 +236,7 @@ const PROJECTS: {
     name: "Study Assistant",
     impact: "Turns lecture PDFs, recordings, and YouTube links into notes, flashcards, and quizzes, fully on-device.",
     stack: "Angular \u00b7 Spring Boot \u00b7 Java \u00b7 SQLite \u00b7 Ollama \u00b7 whisper.cpp \u00b7 Kokoro TTS",
-    context: "Personal Project",
+    context: "Personal Project, Aug \u2013 Sep 2026",
     bullets: [
       "Built a local-first study tool: drop in lecture PDFs, audio, video, or a YouTube link and get study notes, key terms, flashcards, and a self-grading quiz, with no data leaving the machine.",
       "Wrote a Spring Boot backend that extracts and cleans PDF text page by page, transcribes audio locally with whisper.cpp when captions are missing, and runs map/reduce generation over long documents with Ollama.",
@@ -276,11 +290,12 @@ const PROJECTS: {
   {
     name: "Sprout",
     impact: "AI recovery-support app with encrypted health data, pitched to a panel of healthcare judges.",
-    stack: "React \u00b7 Vite \u00b7 Node.js \u00b7 Express \u00b7 PostgreSQL \u00b7 OpenAI",
-    context: "Healthcare Innovation Challenge 2026",
+    stack: "React \u00b7 Vite \u00b7 Node.js \u00b7 Express \u00b7 PostgreSQL \u00b7 pgvector \u00b7 Grok \u00b7 LangSmith",
+    context: "Healthcare Innovation Challenge, Apr 2026",
     bullets: [
-      "Built a full-stack web app using AI to personalize daily recovery micro-tasks for users with substance use disorder, converting mood check-ins and journal entries into actionable interventions via the OpenAI API.",
-      "Designed a relapse-risk classification system that analyzes mood, cravings, sleep quality, and journal sentiment in real time to surface targeted recovery actions.",
+      "Built a full-stack web app using AI to personalize daily recovery micro-tasks for users with substance use disorder, converting mood check-ins and journal entries into actionable interventions via the Grok API.",
+      "Engineered a real-time relapse-risk classifier that analyzes mood, cravings, sleep quality, and journal sentiment, using pgvector for context retrieval and scoring heuristics to convert user sentiment into targeted next steps.",
+      "Integrated LangSmith for continuous evaluation of the LLM outputs behind each recommendation.",
       "Implemented JWT-based authentication and a RESTful Express/PostgreSQL backend with row-level data security to protect sensitive health information.",
       "Presented to a panel of healthcare judges, competing on feasibility, scientific rigor, and public health impact.",
     ],
@@ -431,8 +446,8 @@ const PROJECTS: {
 
 const SKILLS: Record<string, string[]> = {
   "Languages": ["Python", "Java", "TypeScript", "JavaScript", "HTML5", "CSS3", "SQL", "C", "C++", "LabVIEW"],
-  "Frameworks & Libraries": ["React", "Next.js", "Node.js", "Express", "Spring Boot", "Angular", "Tailwind CSS", "Pandas", "NumPy", "Jupyter"],
-  "Cloud & Data": ["AWS", "Docker", "Git", "MongoDB", "PostgreSQL"],
+  "Frameworks & Libraries": ["React", "Next.js", "Node.js", "Express", "Spring Boot", "Angular", "Django", "FastAPI", "Tailwind CSS", "Pandas", "NumPy", "SciPy", "Scikit-learn", "Matplotlib", "MediaPipe", "Jupyter"],
+  "Cloud, Data & AI": ["AWS", "Docker", "Git", "JUnit", "WebSockets", "MongoDB", "PostgreSQL", "Supabase", "Neon", "OpenAI", "Claude", "Gemini", "ElevenLabs", "Fetch.ai", "Ollama"],
   "Design & Tools": ["Fusion 360", "AutoCAD", "CHITUBOX", "Bambu Studio", "Canva", "Adobe Express", "Photoshop", "IBM SPSS"],
 };
 
@@ -452,6 +467,9 @@ const ICON_MAP: Record<string, string> = {
   "Next.js": "nextjs/nextjs-original",
   "Node.js": "nodejs/nodejs-original",
   "Express": "express/express-original",
+  "Django": "django/django-plain",
+  "FastAPI": "fastapi/fastapi-original",
+  "Supabase": "supabase/supabase-original",
   "Spring Boot": "spring/spring-original",
   "Angular": "angular/angular-original",
   "Tailwind CSS": "tailwindcss/tailwindcss-original",
@@ -616,17 +634,26 @@ const COURSES: {
   },
 ];
 
-const LEADERSHIP = [
+const LEADERSHIP: {
+  org: string;
+  role: string;
+  date: string;
+  icon: string;
+  logo: string;
+  link?: { label: string; href: string };
+  bullets: string[];
+}[] = [
   {
     org: "Alpha Eta Mu Beta (AEMB) Honor Society",
-    role: "Website Developer, Elective Board",
-    date: "Apr 2026 \u2013 Present",
+    role: "Executive Board Website Developer",
+    date: "May 2026 \u2013 Present",
     icon: "\ud83c\udfc5",
     logo: "/leadership/aemb.png",
+    link: { label: "Chapter Website", href: "https://sites.google.com/site/stonybrookaemb/" },
     bullets: [
       "Designing promotional content, including digital and print flyers, to foster attendance and awareness for organizational events through weekly department emails.",
       "Managing routine updates to the organization\u2019s website and developing social media presence, executing a regular posting schedule to ensure digital content is accurate, user-friendly, and accessible.",
-      "Utilized design tools (Canva, Adobe Express) to produce professional marketing materials for various events, driving an increase in event participation across departments.",
+      "Support event planning and organization, using design tools (Canva, Adobe Express) to produce professional promotional content that drove a 20% increase in event participation across semesters.",
     ],
   },
   {
@@ -709,17 +736,17 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState<ProjectTag>("All");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  // Both default off/light for first-time visitors; a saved preference wins.
-  const [bgOn, setBgOn] = useState(false);
+  // Background defaults on and theme defaults light; a saved preference wins.
+  const [bgOn, setBgOn] = useState(true);
   const [dark, setDark] = useState(false);
   const [openCourse, setOpenCourse] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
   const [progress, setProgress] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Restore a previously chosen background preference (default stays off).
+  // Restore a previously chosen background preference (default stays on).
   useEffect(() => {
-    if (localStorage.getItem("bg3d") === "1") setBgOn(true);
+    if (localStorage.getItem("bg3d") === "0") setBgOn(false);
   }, []);
   // Persist only on an actual user action, so the default never overwrites a
   // saved choice during the first render pass.
@@ -800,8 +827,8 @@ export default function Home() {
   const filters: ProjectTag[] = ["All", "SWE", "Finance", "AI/ML", "Hardware", "Biomedical", "Energy", "Research"];
 
   return (
-    <div className="min-h-screen bg-white/70 dark:bg-[#171717]/80 text-slate-800 dark:text-neutral-200">
-      <ThreeBackground enabled={bgOn} dark={dark} />
+    <div className={`min-h-screen text-slate-800 dark:text-neutral-200 ${bgOn ? "" : "bg-white/70 dark:bg-[#171717]/80"}`}>
+      <GlyphBackground enabled={bgOn} dark={dark} />
 
       {/* Scroll progress */}
       <div aria-hidden="true" className="fixed top-0 left-0 right-0 z-[60] h-0.5">
@@ -852,14 +879,14 @@ export default function Home() {
             <button
               onClick={toggleBg}
               aria-pressed={bgOn}
-              title={bgOn ? "Turn off 3D background" : "Turn on 3D background"}
+              title={bgOn ? "Turn off animated background" : "Turn on animated background"}
               className={`inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg border transition-colors ${bgOn
                   ? "border-accent/40 text-accent bg-accent-soft/50"
                   : "border-slate-200 dark:border-neutral-700 text-slate-500 dark:text-neutral-400 hover:text-slate-600 dark:hover:text-neutral-200"
                 }`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${bgOn ? "bg-accent" : "bg-slate-300 dark:bg-neutral-600"}`} />
-              3D
+              BG
             </button>
             <a
               href="/Matthew_Kuan_Resume.pdf"
@@ -898,7 +925,7 @@ export default function Home() {
               aria-pressed={bgOn}
               className="text-left text-sm font-medium text-slate-500 dark:text-neutral-400 hover:text-accent transition-colors"
             >
-              {bgOn ? "Disable" : "Enable"} 3D background
+              {bgOn ? "Disable" : "Enable"} animated background
             </button>
           </div>
         )}
@@ -1059,7 +1086,7 @@ export default function Home() {
             <div className="flex justify-between items-start mb-2">
               <div>
                 <p className="text-slate-900 dark:text-neutral-50 font-bold">Stony Brook University</p>
-                <p className="text-slate-500 dark:text-neutral-400 text-sm">B.E. Biomedical Engineering & Applied Math</p>
+                <p className="text-slate-500 dark:text-neutral-400 text-sm">B.E. Biomedical Engineering, B.S. Applied Mathematics</p>
               </div>
               <span className="text-slate-500 dark:text-neutral-400 text-xs text-right shrink-0 ml-2">Expected May 2028</span>
             </div>
@@ -1316,6 +1343,13 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
+              {l.link && (
+                <a href={l.link.href} target="_blank" rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-accent bg-accent-soft/60 border border-accent/20 px-2.5 py-1 rounded-full hover:bg-accent hover:text-white transition-colors">
+                  {l.link.label}
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                </a>
+              )}
             </div>
           ))}
         </div>
