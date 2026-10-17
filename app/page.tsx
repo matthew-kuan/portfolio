@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 // `m` is the tree-shakeable equivalent of `motion`; the animation feature set
 // itself is fetched lazily (see loadMotionFeatures) so none of it sits in the
@@ -493,8 +493,6 @@ function iconUrl(name: string): string | null {
   return ICON_MAP[name] ? `${DEVICON}/${ICON_MAP[name]}.svg` : null;
 }
 
-const MARQUEE_SKILLS = ["Python", "React", "Next.js", "TypeScript", "Java", "Spring Boot", "PostgreSQL", "Docker", "MongoDB", "SciPy", "Three.js", "Tailwind CSS", "Node.js", "Git", "Angular"];
-
 const POSTERS = [
   { title: "Developing a Thermoplastic Device Capable of Partitioning Samples for dPCR", venue: "SBU URECA Symposium, 2026", pdf: "/posters/dpcr-thermoplastic-poster.pdf" },
   { title: "A Piezoelectric-Driven High-Throughput Microfluidic Platform for Optimizing Biomanufacturing for Cell-Based Immunotherapy", venue: "VIP Program Symposium, 2026", pdf: "/posters/piezoelectric-microfluidic-poster.pdf" },
@@ -695,15 +693,8 @@ function useReveal(dep?: unknown) {
 
 // ─── COMPONENTS ───────────────────────────────────────────────────────────────
 
-function SectionHeading({ label, title }: { label: string; title: string }) {
-  return (
-    <div className="reveal">
-      <span className="section-label">
-        <span className="w-6 h-px bg-accent inline-block" /> {label}
-      </span>
-      <h2 className="section-heading">{title}</h2>
-    </div>
-  );
+function SectionHeading({ title }: { title: string }) {
+  return <h2 className="section-heading reveal">{title}</h2>;
 }
 
 function Tag({ label }: { label: string }) {
@@ -741,8 +732,6 @@ export default function Home() {
   const [dark, setDark] = useState(false);
   const [openCourse, setOpenCourse] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
-  const [progress, setProgress] = useState(0);
-  const heroRef = useRef<HTMLDivElement>(null);
 
   // Restore a previously chosen background preference (default stays on).
   useEffect(() => {
@@ -772,14 +761,10 @@ export default function Home() {
     });
   };
 
-  // Scroll progress bar + scroll-spy for the nav.
+  // Scroll-spy for the nav.
   useEffect(() => {
     const ids = NAV_LINKS.map((l) => l.href.slice(1));
     const onScroll = () => {
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      setProgress(max > 0 ? (doc.scrollTop / max) * 100 : 0);
-
       // Active section = the last one whose top has crossed the 40% viewport
       // line. Empty while still on the hero, so nothing is highlighted before
       // the reader has actually reached a section.
@@ -808,20 +793,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-    const onMove = (e: MouseEvent) => {
-      const rect = hero.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      hero.style.setProperty("--mx", `${x}%`);
-      hero.style.setProperty("--my", `${y}%`);
-    };
-    hero.addEventListener("mousemove", onMove);
-    return () => hero.removeEventListener("mousemove", onMove);
-  }, []);
-
   const filteredProjects =
     activeFilter === "All" ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(activeFilter));
   const filters: ProjectTag[] = ["All", "SWE", "Finance", "AI/ML", "Hardware", "Biomedical", "Energy", "Research"];
@@ -829,14 +800,6 @@ export default function Home() {
   return (
     <div className={`min-h-screen text-slate-800 dark:text-neutral-200 ${bgOn ? "" : "bg-white/70 dark:bg-[#171717]/80"}`}>
       <GlyphBackground enabled={bgOn} dark={dark} />
-
-      {/* Scroll progress */}
-      <div aria-hidden="true" className="fixed top-0 left-0 right-0 z-[60] h-0.5">
-        <div
-          className="h-full bg-accent transition-[width] duration-75 ease-out"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
 
       {/* ── NAV ─────────────────────────────────────────────────────────── */}
       <nav
@@ -892,7 +855,7 @@ export default function Home() {
               href="/Matthew_Kuan_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-shine text-xs font-semibold bg-slate-900 dark:bg-accent text-white dark:text-neutral-900 px-4 py-2 rounded-lg hover:bg-accent dark:hover:bg-accent-light transition-colors"
+              className="text-xs font-semibold bg-slate-900 dark:bg-neutral-100 text-white dark:text-neutral-900 px-3.5 py-1.5 rounded-md hover:bg-slate-700 dark:hover:bg-white transition-colors"
             >
               Resume ↗
             </a>
@@ -934,55 +897,33 @@ export default function Home() {
       <main id="main">
 
       {/* ── HERO ────────────────────────────────────────────────────────── */}
-      <section
-        id="home"
-        ref={heroRef}
-        className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-        style={{
-          // Pointer-follow spotlight, tinted from the active accent.
-          background:
-            "radial-gradient(600px circle at var(--mx, 50%) var(--my, 30%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%)",
-        }}
-      >
-        <div className="absolute inset-0 grid-bg" />
-        <div className="blob blob-1 bg-blue-300/40 dark:bg-orange-500/30 w-[380px] h-[380px] top-[-60px] right-[10%]" />
-        <div className="blob blob-2 bg-indigo-300/30 dark:bg-amber-500/20 w-[320px] h-[320px] bottom-[10%] left-[5%]" />
-
-        {/* Entrance order is intentional: the name lands first, then the
-            supporting details cascade in around it. */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 w-full pt-24 pb-16">
-          <p className="font-mono text-accent text-sm mb-5 animate-fade-up" style={{ animationDelay: "0.75s" }}>
-            <span
-              className={`inline-block w-2 h-2 rounded-full mr-2 ${CURRENTLY.available ? "bg-green-500 animate-pulse" : "bg-slate-400 dark:bg-neutral-500"}`}
-              aria-hidden="true"
-            />
-            {CURRENTLY.available
-              ? `Open to ${CURRENTLY.seeking}`
-              : "Not currently seeking roles"}
-          </p>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-neutral-50 mb-4 leading-[1.05] tracking-tight animate-fade-up"
-            style={{ animationDelay: "0s" }}>
+      <section id="home" className="relative">
+        <div className="max-w-5xl mx-auto px-6 w-full pt-36 pb-24">
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-neutral-50 mb-3 leading-tight">
             Matthew Kuan
           </h1>
           {/* A tagline, not a section, so keep it out of the heading outline. */}
-          <p className="text-2xl md:text-3xl gradient-text font-bold mb-6 animate-fade-up"
-            style={{ animationDelay: "0.9s" }}>
+          <p className="text-xl md:text-2xl text-slate-500 dark:text-neutral-400 font-medium mb-6">
             Engineering &amp; Maths
           </p>
-          <p className="text-slate-600 dark:text-neutral-300 text-base md:text-lg max-w-2xl leading-relaxed mb-8 animate-fade-up"
-            style={{ animationDelay: "1.05s" }}>
+          <p className="text-slate-600 dark:text-neutral-300 text-base md:text-lg max-w-2xl leading-relaxed mb-4">
             Junior at <span className="text-slate-900 dark:text-neutral-50 font-medium">Stony Brook University</span> studying{" "}
             <span className="text-slate-900 dark:text-neutral-50 font-medium">Biomedical Engineering & Applied Mathematics</span> (GPA 3.72),
             minoring in <span className="text-slate-900 dark:text-neutral-50 font-medium">Finance</span>. I build software and quantitative
             models that turn messy data into decisions, across markets, engineering systems, and the lab.
           </p>
-          <div className="flex flex-wrap items-center gap-3 animate-fade-up" style={{ animationDelay: "1.2s" }}>
+          <p className="text-slate-500 dark:text-neutral-400 text-sm mb-8">
+            {CURRENTLY.available
+              ? `Currently looking for ${CURRENTLY.seeking}.`
+              : "Not currently seeking roles."}
+          </p>
+          <div className="flex flex-wrap items-center gap-3">
             <a href="#projects"
-              className="btn-shine bg-slate-900 dark:bg-neutral-800 text-white font-medium px-6 py-3 rounded-xl hover:bg-accent transition-colors text-sm">
+              className="bg-slate-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-medium px-5 py-2.5 rounded-md hover:bg-slate-700 dark:hover:bg-white transition-colors text-sm">
               View Projects
             </a>
             <a href="#contact"
-              className="border border-slate-300 text-slate-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-xl hover:border-accent hover:text-accent transition-colors text-sm">
+              className="border border-slate-300 dark:border-neutral-600 text-slate-700 dark:text-neutral-300 font-medium px-5 py-2.5 rounded-md hover:border-slate-500 dark:hover:border-neutral-400 transition-colors text-sm">
               Contact Information
             </a>
             <div className="flex items-center gap-1 ml-2">
@@ -1003,49 +944,21 @@ export default function Home() {
               </a>
             </div>
           </div>
-
-        </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-slate-500 dark:text-neutral-400 animate-bounce">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 5v14M19 12l-7 7-7-7" />
-          </svg>
         </div>
       </section>
 
-      {/* ── SKILLS MARQUEE ──────────────────────────────────────────────── */}
-      {/* Decorative: the list is duplicated for the seamless loop, so hide it
-          from assistive tech, since the real skill list lives in the Skills section. */}
-      <div aria-hidden="true" className="marquee-wrap border-y border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800/50 py-4 overflow-hidden">
-        <div className="marquee-track flex gap-10 whitespace-nowrap w-max items-center">
-          {[...MARQUEE_SKILLS, ...MARQUEE_SKILLS].map((s, i) => (
-            <span key={i} className="text-slate-500 dark:text-neutral-400 font-mono text-sm flex items-center gap-2.5 grayscale hover:grayscale-0 transition-all">
-              <SkillIcon name={s} size={18} /> {s}
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* ── ABOUT ME ────────────────────────────────────────────────────── */}
       <section id="about" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Who I Am" title="About Me" />
+        <SectionHeading title="About Me" />
         <div className="grid md:grid-cols-[300px_1fr] gap-10 items-start">
           {/* Photo */}
           <div className="reveal">
-            <div className="relative group">
-              <div className="absolute -inset-2 bg-gradient-to-tr from-accent/30 to-indigo-300/30 rounded-3xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/me.jpg"
-                alt="Matthew Kuan"
-                className="relative w-full aspect-[3/4] object-cover rounded-3xl border border-slate-200 dark:border-neutral-700 shadow-lg"
-              />
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2 justify-center">
-              {["🧗 Bouldering", "🛹 Skating", "🤺 Fencing"].map((f) => (
-                <span key={f} className="text-xs text-slate-600 dark:text-neutral-300 bg-slate-100 dark:bg-neutral-800 border border-slate-200 dark:border-neutral-700 px-2.5 py-1 rounded-full">{f}</span>
-              ))}
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/me.jpg"
+              alt="Matthew Kuan"
+              className="w-full aspect-[3/4] object-cover rounded-md border border-slate-200 dark:border-neutral-700"
+            />
           </div>
 
           {/* Bio */}
@@ -1066,21 +979,13 @@ export default function Home() {
               Curiosity is the common thread through all of it. I&apos;m happiest when I&apos;m learning
               something new and figuring out how it fits together.
             </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a href="#projects" className="btn-shine bg-slate-900 dark:bg-neutral-800 text-white font-medium px-5 py-2.5 rounded-xl hover:bg-accent transition-colors text-sm">
-                See My Work
-              </a>
-              <a href="#contact" className="border border-slate-300 text-slate-700 dark:text-neutral-300 font-medium px-5 py-2.5 rounded-xl hover:border-accent hover:text-accent transition-colors text-sm">
-                Contact Information
-              </a>
-            </div>
           </div>
         </div>
       </section>
 
       {/* ── EDUCATION ───────────────────────────────────────────────────── */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Background" title="Education" />
+        <SectionHeading title="Education" />
         <div className="grid md:grid-cols-2 gap-5">
           <div className="card reveal">
             <div className="flex justify-between items-start mb-2">
@@ -1121,13 +1026,11 @@ export default function Home() {
 
       {/* ── EXPERIENCE ──────────────────────────────────────────────────── */}
       <section id="experience" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Industry & Research" title="Experience" />
-        <div className="relative">
-          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-accent via-slate-200 to-transparent" />
-          <div className="flex flex-col gap-6">
+        <SectionHeading title="Experience" />
+        <div>
+          <div className="flex flex-col gap-5">
             {EXPERIENCE.map((e) => (
-              <div key={e.org} className="relative pl-8 reveal">
-                <div className="absolute left-0 top-6 w-3.5 h-3.5 rounded-full bg-white border-2 border-accent" />
+              <div key={e.org} className="reveal">
                 <div className="card">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-3">
                     <div>
@@ -1165,8 +1068,7 @@ export default function Home() {
 
         {/* Interactive model of the device the lab work above describes. */}
         <div className="mt-12 reveal">
-          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-1 flex items-center gap-2">
-            <span className="text-accent" aria-hidden="true">🔬</span>
+          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-1">
             Explore the dPCR Device
           </h3>
           <p className="text-slate-500 dark:text-neutral-400 text-sm mb-5 max-w-2xl">
@@ -1177,19 +1079,18 @@ export default function Home() {
         </div>
 
         <div className="mt-12 reveal">
-          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-4 flex items-center gap-2">
-            <span className="text-accent" aria-hidden="true">📄</span> Poster Presentations
+          <h3 className="text-slate-900 dark:text-neutral-50 font-bold mb-4">
+            Poster Presentations
           </h3>
           <div className="flex flex-col gap-3">
             {POSTERS.map((p) => (
               <a key={p.title} href={p.pdf} target="_blank" rel="noopener noreferrer"
-                className="group flex gap-4 items-center p-4 bg-slate-50 dark:bg-neutral-800/50 rounded-xl border border-slate-200 dark:border-neutral-700 hover:border-accent/40 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-lg hover:shadow-accent/5 transition-all">
-                <div className="w-9 h-9 rounded-lg bg-accent-soft flex items-center justify-center shrink-0 text-accent text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">P</div>
+                className="group flex gap-4 items-center p-4 bg-white dark:bg-neutral-800 rounded-lg border border-slate-200 dark:border-neutral-700 hover:border-slate-400 dark:hover:border-neutral-500 transition-colors">
                 <div className="flex-1 min-w-0">
-                  <p className="text-slate-800 dark:text-neutral-100 text-sm font-medium leading-snug group-hover:text-accent transition-colors">{p.title}</p>
+                  <p className="text-slate-800 dark:text-neutral-100 text-sm font-medium leading-snug group-hover:underline underline-offset-2">{p.title}</p>
                   <p className="text-slate-500 dark:text-neutral-400 text-xs mt-1">{p.venue}</p>
                 </div>
-                <span className="shrink-0 text-xs font-medium text-slate-500 dark:text-neutral-400 group-hover:text-accent flex items-center gap-1 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0">
+                <span className="shrink-0 text-xs font-medium text-accent flex items-center gap-1">
                   View PDF
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
                 </span>
@@ -1201,7 +1102,7 @@ export default function Home() {
 
       {/* ── PROJECTS ────────────────────────────────────────────────────── */}
       <section id="projects" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Things I've Built" title="Projects" />
+        <SectionHeading title="Projects" />
         <div className="flex flex-wrap gap-2 mb-8 reveal">
           {filters.map((f) => (
             <button key={f} onClick={() => setActiveFilter(f)}
@@ -1227,9 +1128,9 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ type: "spring", stiffness: 320, damping: 30, mass: 0.7 }}
-              className="card flex flex-col group">
+              className="card flex flex-col">
               <div className="flex justify-between items-start gap-2 mb-1">
-                <h3 className="text-slate-900 dark:text-neutral-50 font-bold group-hover:text-accent transition-colors">{p.name}</h3>
+                <h3 className="text-slate-900 dark:text-neutral-50 font-bold">{p.name}</h3>
                 <div className="flex items-center gap-1.5 shrink-0">
                   {p.demo && (
                     <a href={p.demo} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} live demo`}
@@ -1261,9 +1162,9 @@ export default function Home() {
                   )}
                 </div>
               </div>
-              <p className="text-slate-500 dark:text-neutral-400 text-xs font-mono mb-2 leading-relaxed">{p.stack}</p>
-              <p className="text-accent text-xs mb-3 font-medium">{p.context}</p>
-              <p className="text-slate-900 dark:text-neutral-100 text-sm font-semibold leading-snug mb-3 pl-3 border-l-2 border-accent">
+              <p className="text-slate-500 dark:text-neutral-400 text-xs mb-1">{p.context}</p>
+              <p className="text-slate-500 dark:text-neutral-400 text-xs mb-3 leading-relaxed">{p.stack}</p>
+              <p className="text-slate-700 dark:text-neutral-200 text-sm leading-snug mb-3">
                 {p.impact}
               </p>
               <ul className="space-y-1.5 flex-1 mb-4">
@@ -1286,14 +1187,14 @@ export default function Home() {
 
       {/* ── SKILLS ──────────────────────────────────────────────────────── */}
       <section id="skills" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="My Toolkit" title="Skills" />
+        <SectionHeading title="Skills" />
         <div className="grid sm:grid-cols-2 gap-5">
           {Object.entries(SKILLS).map(([category, skills]) => (
             <div key={category} className="card reveal">
               <p className="text-slate-900 dark:text-neutral-50 font-bold text-sm mb-3">{category}</p>
               <div className="flex flex-wrap gap-2">
                 {skills.map((s) => (
-                  <span key={s} className="inline-flex items-center gap-2 text-sm bg-slate-100 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300 px-3 py-1.5 rounded-lg border border-transparent hover:bg-white dark:hover:bg-neutral-800 hover:border-accent/30 hover:text-accent transition-colors">
+                  <span key={s} className="inline-flex items-center gap-2 text-sm bg-slate-100 dark:bg-neutral-700/60 text-slate-700 dark:text-neutral-300 px-2.5 py-1 rounded">
                     <SkillIcon name={s} size={20} />{s}
                   </span>
                 ))}
@@ -1305,7 +1206,7 @@ export default function Home() {
 
       {/* ── LEADERSHIP ──────────────────────────────────────────────────── */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="Beyond the Lab" title="Leadership & Activities" />
+        <SectionHeading title="Leadership & Activities" />
         <div className="grid md:grid-cols-2 gap-5 mb-8">
           {LEADERSHIP.map((l) => (
             <div key={l.org} className="card reveal">
@@ -1379,14 +1280,14 @@ export default function Home() {
         </div>
         <div className="reveal flex flex-wrap gap-2">
           {["Project Destined 2026", "Goldman Sachs ELS 2026", "McKinsey Forward 2026", "SBU Bioinformatics Bootcamp 2024", "VIP BEAR Team 2024–26", "HackerRank Orchestrate #85/1773", "HopperHacks WiCS 2026", "L'Oréal Brandstorm 2026", "BMES", "AEMB Honor Society"].map(a => (
-            <span key={a} className="text-xs text-slate-500 dark:text-neutral-400 border border-slate-200 dark:border-neutral-700 px-3 py-1.5 rounded-full hover:border-accent/40 hover:text-accent transition-colors">{a}</span>
+            <span key={a} className="text-xs text-slate-600 dark:text-neutral-300 bg-slate-100 dark:bg-neutral-800 px-2.5 py-1 rounded">{a}</span>
           ))}
         </div>
       </section>
 
       {/* ── COURSEWORK ──────────────────────────────────────────────────── */}
       <section id="coursework" className="max-w-5xl mx-auto px-6 py-20">
-        <SectionHeading label="What I've Studied" title="Coursework" />
+        <SectionHeading title="Coursework" />
         <p className="reveal text-slate-500 dark:text-neutral-400 text-sm mb-8 -mt-6 max-w-2xl">
           Selected courses from my Biomedical Engineering &amp; Applied Mathematics degree.
           Click any course to read its catalog description.
@@ -1394,8 +1295,7 @@ export default function Home() {
         <div className="flex flex-col gap-8">
           {COURSES.map((grp) => (
             <div key={grp.group} className="reveal">
-              <h3 className="text-slate-900 dark:text-neutral-50 font-bold text-sm mb-3 flex items-center gap-2">
-                <span className="w-4 h-px bg-accent inline-block" />
+              <h3 className="text-slate-900 dark:text-neutral-50 font-bold text-sm mb-3">
                 {grp.group}
               </h3>
               <div className="grid sm:grid-cols-2 gap-2.5">
@@ -1408,10 +1308,10 @@ export default function Home() {
                       onClick={() => setOpenCourse(open ? null : key)}
                       aria-expanded={open}
                       aria-controls={`course-panel-${key.replace(/\s+/g, "-")}`}
-                      className={`text-left rounded-xl border p-4 transition-all duration-300 ${
+                      className={`text-left rounded-lg border p-4 bg-white dark:bg-neutral-800 transition-colors ${
                         open
-                          ? "bg-white dark:bg-neutral-800 border-accent/40 shadow-lg shadow-accent/5"
-                          : "bg-white/60 dark:bg-neutral-800/40 border-slate-200 dark:border-neutral-700 hover:border-accent/30 hover:bg-white dark:hover:bg-neutral-800"
+                          ? "border-slate-400 dark:border-neutral-500"
+                          : "border-slate-200 dark:border-neutral-700 hover:border-slate-400 dark:hover:border-neutral-500"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
@@ -1461,10 +1361,9 @@ export default function Home() {
 
       {/* ── CONTACT ─────────────────────────────────────────────────────── */}
       <section id="contact" className="max-w-5xl mx-auto px-6 py-20">
-        <div className="reveal relative overflow-hidden rounded-3xl bg-slate-900 dark:bg-neutral-800 px-8 py-14 md:px-14">
-          <div className="blob bg-accent/30 w-[300px] h-[300px] top-[-80px] right-[-40px]" />
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-10 tracking-tight">
+        <div className="reveal rounded-lg bg-slate-900 dark:bg-neutral-800 px-8 py-10 md:px-12">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
               Contact Information
             </h2>
             <div className="grid sm:grid-cols-2 gap-3 max-w-2xl">
@@ -1477,9 +1376,9 @@ export default function Home() {
                 <a key={c.label} href={c.href}
                   target={c.href.startsWith("http") ? "_blank" : undefined}
                   rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-accent/50 transition-all group">
-                  <span className="text-slate-500 dark:text-neutral-400 text-xs w-16 shrink-0 font-mono uppercase tracking-wider">{c.label}</span>
-                  <span className="text-slate-100 text-sm group-hover:text-accent-light transition-colors truncate">{c.value}</span>
+                  className="flex items-center gap-4 p-3 border border-white/10 rounded-md hover:border-white/40 transition-colors group">
+                  <span className="text-slate-400 dark:text-neutral-400 text-xs w-16 shrink-0">{c.label}</span>
+                  <span className="text-slate-100 text-sm group-hover:underline underline-offset-2 truncate">{c.value}</span>
                 </a>
               ))}
             </div>
@@ -1491,10 +1390,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-slate-200 dark:border-neutral-700 max-w-5xl mx-auto px-6 py-8">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-slate-500 dark:text-neutral-400 text-xs">Designed & built by Matthew Kuan · © 2026</p>
-          <p className="text-slate-500 dark:text-neutral-400 text-xs font-mono">Next.js · Tailwind CSS · Vercel</p>
-        </div>
+        <p className="text-slate-500 dark:text-neutral-400 text-xs">© 2026 Matthew Kuan</p>
       </footer>
     </div>
   );
