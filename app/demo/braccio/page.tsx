@@ -13,7 +13,7 @@ import { useCallback, useEffect, useState } from "react";
  */
 
 const SERVICE_URL = "http://localhost:8000";
-const REPO = "https://github.com/s3raphsembrace/mediapipe-braccio-control";
+const REPO = "https://github.com/matthew-kuan/mediapipe-braccio-control";
 
 type Status = "checking" | "online" | "offline";
 

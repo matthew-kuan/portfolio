@@ -70,6 +70,7 @@ const EXPERIENCE: {
       "Run a customer review campaign targeting 20+ new Google Reviews, monitoring activity and pacing submissions to sustain organic growth.",
     ],
     tags: ["HubSpot CRM", "Business Development", "Digital Marketing", "Pipeline Analytics"],
+    links: [{ label: "Company Website", href: "https://naturesfinestsecurity.com/" }],
   },
   {
     org: "Residential Safety Program (RSP)",
@@ -159,6 +160,12 @@ const EXPERIENCE: {
       "Explored Oxford Nanopore Technologies\u2019 EPI2ME platform and wf-teloseq Nextflow workflow to assess feasibility of telomere-length sequencing as a biomarker readout for LIV-stimulated T-cell studies.",
     ],
     tags: ["Python", "LabVIEW", "Arduino", "SciPy", "Signal Processing"],
+    links: [
+      {
+        label: "SBU News: Expediting Cancer Care",
+        href: "https://news.stonybrook.edu/university/stony-brook-researchers-working-to-expedite-cancer-care/",
+      },
+    ],
   },
   {
     org: "Rendr Internal Medicine & Oncology",
@@ -172,6 +179,7 @@ const EXPERIENCE: {
       "Scheduled follow-up appointments and developed a working understanding of clinical workflows, diagnostic procedures, and patient care approaches from the provider\u2019s perspective.",
     ],
     tags: ["Clinical", "Patient Care", "Healthcare"],
+    links: [{ label: "Practice Website", href: "https://www.rendrcare.com/about-us" }],
   },
   {
     org: "Aquatic Research Environmental Assessment Center",
@@ -244,7 +252,7 @@ const PROJECTS: {
       "Packaged the Angular front end into a single runnable jar with one-click installers for the optional speech and media tools.",
     ],
     tags: ["SWE", "AI/ML"],
-    repo: "https://github.com/s3raphsembrace/study-assistant",
+    repo: "https://github.com/matthew-kuan/study-assistant",
   },
   {
     name: "Mutual Fund Investment Predictor",
@@ -272,7 +280,7 @@ const PROJECTS: {
     ],
     tags: ["SWE", "Biomedical"],
     demo: "https://habits-zeta-nine.vercel.app/",
-    repo: "https://github.com/s3raphsembrace/habits",
+    repo: "https://github.com/matthew-kuan/habits",
   },
   {
     name: "Multi-Modal Evidence Review",
@@ -285,7 +293,7 @@ const PROJECTS: {
       "Engineered object-specific prompts with injected evidence rubrics and user-history risk context, plus a closed-vocabulary normalizer and evaluation harness (macro-F1, confusion matrix) scored against labeled data.",
     ],
     tags: ["AI/ML", "SWE"],
-    repo: "https://github.com/s3raphsembrace/orchestrate",
+    repo: "https://github.com/matthew-kuan/orchestrate",
   },
   {
     name: "Sprout",
@@ -316,7 +324,7 @@ const PROJECTS: {
     ],
     tags: ["SWE", "AI/ML"],
     pdf: "/projects/mon-sillage.pdf",
-    repo: "https://github.com/s3raphsembrace/mon-sillage",
+    repo: "https://github.com/matthew-kuan/mon-sillage",
     demo: "https://mon-sillage.vercel.app/",
   },
   {
@@ -348,7 +356,7 @@ const PROJECTS: {
     ],
     tags: ["Hardware", "AI/ML", "Biomedical"],
     pdf: "/projects/braccio-arm.pdf",
-    repo: "https://github.com/s3raphsembrace/mediapipe-braccio-control",
+    repo: "https://github.com/matthew-kuan/mediapipe-braccio-control",
     demo: "/demo/braccio",
   },
   {
@@ -544,6 +552,11 @@ const COURSES: {
         desc: "The upper-division writing requirement for the biomedical engineering major, satisfied through technical writing produced alongside an upper-division BME course.",
       },
       {
+        code: "BME 303",
+        title: "Biomechanics",
+        desc: "The principles of mechanics and dynamics that apply to living organisms, from cells to humans to Sequoia trees: how biological materials constrain behavior, the forces, motion, and energy of locomotion, the relationship between form and function, and how mechanical stresses drive pathology, growth, and adaptation.",
+      },
+      {
         code: "BME 304",
         title: "Genetic Engineering",
         desc: "Molecular bioengineering with a focus on genetic engineering: DNA structure and function, genetic information flow, recombinant DNA methodology, cloning and transgenics, biotechnology and bioprocessing, and gene therapy, including the ethical, regulatory, and risk-benefit dimensions.",
@@ -554,9 +567,19 @@ const COURSES: {
         desc: "Python programming applied to real-world data analysis: the standard library, functions, loops, classes and objects, strings, lists, and tuples, plus advanced packages for processing biomedical data and images, taught through both lecture and laboratory.",
       },
       {
+        code: "BME 402",
+        title: "Contemporary Biotechnology",
+        desc: "An introduction to modern biotechnology and its history and applications: bioproducts and biofuels, microbial fermentation and bioprocessing, bioreactors, modeling and simulation, enzyme kinetics, metabolic engineering, bioremediation, and human medicine, plus the ethical, intellectual property, safety, regulatory, and economic issues around biotechnology.",
+      },
+      {
         code: "BME 499",
         title: "Research in Biomedical Engineering",
         desc: "An independent research project conducted under faculty supervision.",
+      },
+      {
+        code: "VIP 487",
+        title: "Advanced Project Experience",
+        desc: "A multi-term, multidisciplinary Vertically Integrated Projects team spanning sophomores through graduate students, advised by faculty on topics of research, design, innovation, and entrepreneurship.",
       },
     ],
   },
@@ -592,6 +615,11 @@ const COURSES: {
         code: "BIO 202",
         title: "Fundamentals of Biology: Molecular and Cellular Biology",
         desc: "The fundamentals of cell biology, biochemistry, and genetics: the biochemical and molecular bases of cell structure, energy metabolism, gene regulation, heredity, and development across organisms from bacteria to humans.",
+      },
+      {
+        code: "BIO 204",
+        title: "Fundamentals of Scientific Inquiry in the Biological Sciences I",
+        desc: "The first course in the foundational biology laboratory sequence: the laboratory and research process, a wide range of lab tools, methods, and skills, reading and writing scientific presentations, and collaborating in formal inquiry.",
       },
       {
         code: "CHE 321",
@@ -635,9 +663,9 @@ const COURSES: {
 const LEADERSHIP: {
   org: string;
   role: string;
-  date: string;
+  date?: string;
   icon: string;
-  logo: string;
+  logo?: string;
   link?: { label: string; href: string };
   bullets: string[];
 }[] = [
@@ -663,6 +691,54 @@ const LEADERSHIP: {
     bullets: [
       "Directed end-to-end logistics, equipment management, scheduling, and event coordination for a competitive roster of 20+ athletes, ensuring seamless operational continuity across local and regional tournaments.",
       "Served as the primary point of contact for team members, resolving logistical issues, relaying athletic performance feedback, and providing ongoing administrative support.",
+    ],
+  },
+  {
+    org: "Music Tech Club",
+    role: "Member",
+    icon: "🎛️",
+    bullets: [
+      "Join musicians, engineers, programmers, and creatives exploring the intersection of music and technology at Stony Brook University.",
+      "Build music technology projects such as audio plugins, guitar pedals, synthesizers, and interactive music software, alongside workshops in audio engineering, DSP, electronics, and music production.",
+    ],
+  },
+  {
+    org: "Stony Brook Ski & Snowboard Club",
+    role: "Member",
+    icon: "⛷️",
+    link: { label: "Club Website", href: "https://skiwolves.com/" },
+    bullets: [
+      "Participate in club ski and snowboard trips and events with the Stony Brook University ski community.",
+    ],
+  },
+  {
+    org: "Stony Brook University",
+    role: "Volunteer",
+    date: "Apr 2025 – Present",
+    icon: "🎓",
+    bullets: [
+      "Biomedical Engineering Convocation Crowd Control Volunteer ’25.",
+      "William Floyd STEAM Symposium ’25 VIP BEAR and 3D PATH Representative.",
+    ],
+  },
+  {
+    org: "National Honor Society",
+    role: "Student Volunteer",
+    date: "Oct 2022 – Jun 2024",
+    icon: "📚",
+    bullets: [
+      "Math Department Teaching Assistant.",
+      "NHS Winter Community Building Committee ’23 and Winter Service Project Committee ’22.",
+      "Student Ambassador for the NYCUDL Debate Tournament at the John Jay Campus.",
+    ],
+  },
+  {
+    org: "American Red Cross",
+    role: "Fundraising Volunteer",
+    date: "Sep 2022 – Jun 2024",
+    icon: "❤️",
+    bullets: [
+      "Fundraised in support of disaster and humanitarian relief.",
     ],
   },
 ];
@@ -932,7 +1008,7 @@ export default function Home() {
                 className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-neutral-700 text-slate-500 dark:text-neutral-400 hover:text-accent hover:border-accent transition-colors text-sm font-medium">
                 <span aria-hidden="true">in</span>
               </a>
-              <a href="https://github.com/s3raphsembrace" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/matthew-kuan" target="_blank" rel="noopener noreferrer"
                 aria-label="Matthew Kuan on GitHub (opens in a new tab)"
                 className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-neutral-700 text-slate-500 dark:text-neutral-400 hover:text-accent hover:border-accent transition-colors">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" /></svg>
@@ -1215,25 +1291,27 @@ export default function Home() {
                     wordmarks both render at a legible size. Falls back to the
                     emoji if the logo file is missing. */}
                 <div className="h-12 min-w-12 max-w-[132px] rounded-xl bg-white dark:bg-neutral-100 flex items-center justify-center shrink-0 text-2xl border border-slate-200 dark:border-neutral-600 overflow-hidden px-2 py-1">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={l.logo}
-                    alt=""
-                    aria-hidden="true"
-                    className="max-w-full max-h-full object-contain"
-                    onError={(e) => {
-                      const img = e.currentTarget;
-                      img.style.display = "none";
-                      const fb = img.nextElementSibling as HTMLElement | null;
-                      if (fb) fb.style.display = "block";
-                    }}
-                  />
-                  <span aria-hidden="true" style={{ display: "none" }}>{l.icon}</span>
+                  {l.logo && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={l.logo}
+                      alt=""
+                      aria-hidden="true"
+                      className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        img.style.display = "none";
+                        const fb = img.nextElementSibling as HTMLElement | null;
+                        if (fb) fb.style.display = "block";
+                      }}
+                    />
+                  )}
+                  <span aria-hidden="true" style={{ display: l.logo ? "none" : "block" }}>{l.icon}</span>
                 </div>
                 <div>
                   <p className="text-slate-900 dark:text-neutral-50 font-bold leading-snug">{l.org}</p>
                   <p className="text-accent text-sm font-semibold">{l.role}</p>
-                  <p className="text-slate-500 dark:text-neutral-400 text-xs">{l.date}</p>
+                  {l.date && <p className="text-slate-500 dark:text-neutral-400 text-xs">{l.date}</p>}
                 </div>
               </div>
               <ul className="space-y-1.5">
@@ -1371,7 +1449,7 @@ export default function Home() {
                 { label: "Email", value: "matthew.kuan@stonybrook.edu", href: "mailto:matthew.kuan@stonybrook.edu" },
                 { label: "Phone", value: "(347) 479-4729", href: "tel:3474794729" },
                 { label: "LinkedIn", value: "linkedin.com/in/matt-kuan", href: "https://linkedin.com/in/matt-kuan" },
-                { label: "GitHub", value: "github.com/s3raphsembrace", href: "https://github.com/s3raphsembrace" },
+                { label: "GitHub", value: "github.com/matthew-kuan", href: "https://github.com/matthew-kuan" },
               ].map((c) => (
                 <a key={c.label} href={c.href}
                   target={c.href.startsWith("http") ? "_blank" : undefined}
